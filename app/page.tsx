@@ -80,16 +80,29 @@ export default function Home() {
       <div className="mx-auto flex max-w-5xl flex-col gap-16 px-6 py-16">
         <section id="experience" className={sectionClass}>
           <div className="flex flex-col gap-3">
-            <h2 className="text-2xl font-semibold text-slate-900">
-              {l(content.navigation.items.experience)}
-            </h2>
+            <div className="flex flex-wrap items-center gap-3">
+              <h2 className="text-2xl font-semibold text-slate-900">
+                {l(content.navigation.items.experience)}
+              </h2>
+              <span className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-emerald-700">
+                {l(content.experience.apprenticeshipLabel)}
+              </span>
+            </div>
             <p className="text-sm text-slate-500">
               {l(content.experience.company)} / {l(content.experience.orgUnit)} /{" "}
               {l(content.experience.period)}
             </p>
-            <p className="max-w-2xl text-slate-600">
-              {l(content.experience.scopeSummary)}
+            <p className="text-sm text-slate-600">
+              {l(content.experience.apprenticeshipNote)}
             </p>
+            <div className="space-y-2 text-slate-600">
+              <p className="text-sm font-semibold text-slate-900">
+                {l(content.experience.productLabel)}
+              </p>
+              <p className="max-w-2xl text-sm">
+                {l(content.experience.productOneLiner)}
+              </p>
+            </div>
           </div>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {content.experience.roles.map((role) => (
@@ -105,9 +118,11 @@ export default function Home() {
                     {l(role.period)}
                   </span>
                 </div>
-                <p className="mt-3 text-sm text-slate-600">
-                  {list(role.bullets)[0]}
-                </p>
+                <ul className="mt-3 space-y-2 text-sm text-slate-600">
+                  {list(role.bullets).map((bullet) => (
+                    <li key={bullet}>- {bullet}</li>
+                  ))}
+                </ul>
                 <div className="mt-4 flex flex-wrap gap-2 text-xs text-slate-600">
                   {role.stack.map((tag) => (
                     <span
@@ -121,6 +136,45 @@ export default function Home() {
               </article>
             ))}
           </div>
+          <div className="mt-8">
+            <h3 className="text-lg font-semibold text-slate-900">
+              {l(content.experience.contributionsTitle)}
+            </h3>
+            <p className="mt-2 text-sm text-slate-600">
+              {l(content.experience.contributionsIntro)}
+            </p>
+            <div className="mt-4 grid gap-4 md:grid-cols-3">
+              {content.experience.contributions.map((contribution) => (
+                <article
+                  key={contribution.title.en}
+                  className="rounded-2xl border border-slate-200/80 bg-white/80 p-5"
+                >
+                  <h4 className="text-base font-semibold text-slate-900">
+                    {l(contribution.title)}
+                  </h4>
+                  <p className="mt-2 text-sm text-slate-600">
+                    {l(contribution.context)}
+                  </p>
+                  <p className="mt-2 text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">
+                    {l(contribution.myRole)}
+                  </p>
+                  <p className="mt-2 text-sm text-slate-600">
+                    {l(contribution.outcome)}
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2 text-xs text-slate-600">
+                    {contribution.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-slate-200/80 bg-slate-50 px-3 py-1"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
           <Link
             href="/experience"
             className="mt-6 inline-flex items-center rounded-full border border-slate-300/80 bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
@@ -129,37 +183,17 @@ export default function Home() {
           </Link>
         </section>
 
-        <section id="projects" className={sectionClass}>
+        <section id="approach" className={sectionClass}>
           <h2 className="text-2xl font-semibold text-slate-900">
-            {l(content.navigation.items.projects)}
+            {l(content.approach.title)}
           </h2>
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            {content.initiatives.map((initiative) => (
-              <article
-                key={initiative.slug}
-                className="rounded-2xl border border-slate-200/80 bg-white/80 p-5"
-              >
-                <h3 className="text-lg font-semibold text-slate-900">
-                  {l(initiative.title)}
-                </h3>
-                <p className="mt-3 text-sm text-slate-600">
-                  {l(initiative.summary)}
-                </p>
-                <div className="mt-4 flex flex-wrap gap-2 text-xs text-slate-600">
-                  {initiative.stack.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-slate-200/80 bg-slate-50 px-3 py-1"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </article>
+          <ul className="mt-4 space-y-2 text-sm text-slate-600">
+            {list(content.approach.bullets).map((item) => (
+              <li key={item}>- {item}</li>
             ))}
-          </div>
+          </ul>
           <Link
-            href="/projects"
+            href="/about"
             className="mt-6 inline-flex items-center rounded-full border border-slate-300/80 bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
           >
             {deepDiveLabel}

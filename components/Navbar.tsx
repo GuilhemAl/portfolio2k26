@@ -11,7 +11,6 @@ export function Navbar() {
   const navItems = [
     { label: l(content.navigation.items.home), href: "/#home" },
     { label: l(content.navigation.items.experience), href: "/#experience" },
-    { label: l(content.navigation.items.projects), href: "/#projects" },
     { label: l(content.navigation.items.skills), href: "/#skills" },
     { label: l(content.navigation.items.about), href: "/#about" },
     { label: l(content.navigation.items.contact), href: "/#contact" },
