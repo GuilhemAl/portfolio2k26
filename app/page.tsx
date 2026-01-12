@@ -39,12 +39,12 @@ const sections = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[radial-gradient(1200px_circle_at_top,_#fff7ed_0,_#fef3c7_28%,_#f1f5f9_60%,_#e2e8f0_100%)]">
-      <div className="mx-auto flex max-w-5xl flex-col gap-16 px-6 py-16">
-        <section id="top" className="scroll-mt-28">
-          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">
-            Portfolio
-          </p>
+    <main className="bg-slate-50">
+      <section
+        id="top"
+        className="scroll-mt-28 bg-[radial-gradient(1200px_circle_at_top,_#fff7ed_0,_#fef3c7_28%,_#f1f5f9_60%,_#e2e8f0_100%)]"
+      >
+        <div className="mx-auto flex max-w-5xl flex-col justify-center px-6 py-16">
           <BrandTitle name={site.name} />
           <p className="mt-4 max-w-xl text-lg text-slate-600">
             Ingenieur front-end, je cree des interfaces sobres, rapides et
@@ -61,8 +61,10 @@ export default function Home() {
               Tailwind CSS
             </span>
           </div>
-        </section>
+        </div>
+      </section>
 
+      <div className="mx-auto flex max-w-5xl flex-col gap-16 px-6 py-16">
         {sections.map((section) => (
           <section
             key={section.id}
