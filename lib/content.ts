@@ -22,6 +22,19 @@ export type Content = {
   };
   labels: {
     deepDive: LocalizedString;
+    back: LocalizedString;
+    backToProjects: LocalizedString;
+    seeInitiatives: LocalizedString;
+    projectNotFound: LocalizedString;
+    comingSoon: LocalizedString;
+    timeline: LocalizedString;
+  };
+  pageTitles: {
+    experience: LocalizedString;
+    projects: LocalizedString;
+    skills: LocalizedString;
+    about: LocalizedString;
+    contact: LocalizedString;
   };
   navigation: {
     brand: LocalizedString;
@@ -65,6 +78,7 @@ export type Content = {
   about: {
     paragraph1: LocalizedString;
     paragraph2: LocalizedString;
+    timeline: LocalizedList;
   };
   contact: {
     title: LocalizedString;
@@ -119,6 +133,52 @@ export const content = {
     deepDive: {
       fr: "Creuser",
       en: "Dive in",
+    },
+    back: {
+      fr: "Retour",
+      en: "Back",
+    },
+    backToProjects: {
+      fr: "Retour projets",
+      en: "Back to projects",
+    },
+    seeInitiatives: {
+      fr: "Voir les initiatives",
+      en: "See initiatives",
+    },
+    projectNotFound: {
+      fr: "Projet introuvable",
+      en: "Project not found",
+    },
+    comingSoon: {
+      fr: "Bientot disponible",
+      en: "Coming soon",
+    },
+    timeline: {
+      fr: "Timeline",
+      en: "Timeline",
+    },
+  },
+  pageTitles: {
+    experience: {
+      fr: "Experience",
+      en: "Experience",
+    },
+    projects: {
+      fr: "Projets & initiatives",
+      en: "Projects & initiatives",
+    },
+    skills: {
+      fr: "Competences",
+      en: "Skills",
+    },
+    about: {
+      fr: "A propos",
+      en: "About",
+    },
+    contact: {
+      fr: "Contact",
+      en: "Contact",
     },
   },
   navigation: {
@@ -427,6 +487,16 @@ export const content = {
     paragraph2: {
       fr: "Evolution vers Chef de projet / Scrum Master avec un objectif d'alternance au Master specialise IA de SKEMA.",
       en: "Transitioning to Project Manager / Scrum Master with an apprenticeship goal aligned with SKEMA's AI specialization.",
+    },
+    timeline: {
+      fr: [
+        "Bachelor MDS (2021-2024) - Alternance",
+        "GCA / GTR (2023-Aujourd'hui) - IT Transport & Distribution",
+      ],
+      en: [
+        "Bachelor MDS (2021-2024) - Apprenticeship",
+        "GCA / GTR (2023-Present) - IT Transport & Distribution",
+      ],
     },
   },
   contact: {
