@@ -20,6 +20,20 @@ export type Content = {
     primary: LocalizedString;
     secondary: LocalizedString;
   };
+  labels: {
+    deepDive: LocalizedString;
+  };
+  navigation: {
+    brand: LocalizedString;
+    items: {
+      home: LocalizedString;
+      experience: LocalizedString;
+      projects: LocalizedString;
+      skills: LocalizedString;
+      about: LocalizedString;
+      contact: LocalizedString;
+    };
+  };
   experience: {
     company: LocalizedString;
     orgUnit: LocalizedString;
@@ -60,6 +74,11 @@ export type Content = {
       github: string;
       email: string;
     };
+    linkLabels: {
+      linkedIn: LocalizedString;
+      github: LocalizedString;
+      email: LocalizedString;
+    };
   };
 };
 
@@ -94,6 +113,44 @@ export const content = {
     secondary: {
       fr: "Me contacter",
       en: "Contact me",
+    },
+  },
+  labels: {
+    deepDive: {
+      fr: "Creuser",
+      en: "Dive in",
+    },
+  },
+  navigation: {
+    brand: {
+      fr: "Portfolio",
+      en: "Portfolio",
+    },
+    items: {
+      home: {
+        fr: "Home",
+        en: "Home",
+      },
+      experience: {
+        fr: "Experience",
+        en: "Experience",
+      },
+      projects: {
+        fr: "Projects",
+        en: "Projects",
+      },
+      skills: {
+        fr: "Skills",
+        en: "Skills",
+      },
+      about: {
+        fr: "About",
+        en: "About",
+      },
+      contact: {
+        fr: "Contact",
+        en: "Contact",
+      },
     },
   },
   experience: {
@@ -385,6 +442,20 @@ export const content = {
       linkedIn: "",
       github: "",
       email: "",
+    },
+    linkLabels: {
+      linkedIn: {
+        fr: "LinkedIn",
+        en: "LinkedIn",
+      },
+      github: {
+        fr: "GitHub",
+        en: "GitHub",
+      },
+      email: {
+        fr: "Email",
+        en: "Email",
+      },
     },
   },
 } satisfies Content;
