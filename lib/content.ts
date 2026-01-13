@@ -85,6 +85,7 @@ export type Content = {
       id: "backendDev" | "pmScrum";
       title: LocalizedString;
       period: LocalizedString;
+      summary: LocalizedString;
       focusTitle: LocalizedString;
       focusAreas: LocalizedList;
       stack: string[];
@@ -125,11 +126,11 @@ export const content = {
       en: "IT & Data Project Manager (ex-Backend Quarkus)",
     },
     roleSubheadline: {
-      fr: "Scrum Master sur GTR (GCA) - delivery agile, specs technico-fonctionnelles, integrations SI.",
+      fr: "Scrum Master sur GTR (GCA) - delivery agile, specs technico-fonctionnelles, intégrations SI.",
       en: "Scrum Master on GTR (GCA) - agile delivery, techno-functional specs, SI integrations.",
     },
     goal: {
-      fr: "Je vise une alternance alignee avec le Master specialise Chef de Projet IA (SKEMA).",
+      fr: "Je vise une alternance alignée avec le Master spécialisé Chef de Projet IA (SKEMA).",
       en: "I'm targeting an apprenticeship aligned with SKEMA's AI Project Manager specialization.",
     },
   },
@@ -139,7 +140,7 @@ export const content = {
   },
   ctas: {
     primary: {
-      fr: "Voir l'experience",
+      fr: "Voir l'expérience",
       en: "View experience",
     },
     secondary: {
@@ -157,11 +158,11 @@ export const content = {
       en: "Back",
     },
     seeSkills: {
-      fr: "Voir les competences",
+      fr: "Voir les compétences",
       en: "See skills",
     },
     comingSoon: {
-      fr: "Bientot disponible",
+      fr: "Bientôt disponible",
       en: "Coming soon",
     },
     timeline: {
@@ -171,15 +172,15 @@ export const content = {
   },
   pageTitles: {
     experience: {
-      fr: "Experience",
+      fr: "Expérience",
       en: "Experience",
     },
     skills: {
-      fr: "Competences",
+      fr: "Compétences",
       en: "Skills",
     },
     about: {
-      fr: "A propos",
+      fr: "À propos",
       en: "About",
     },
     contact: {
@@ -198,15 +199,15 @@ export const content = {
         en: "Home",
       },
       experience: {
-        fr: "Experience",
+        fr: "Expérience",
         en: "Experience",
       },
       skills: {
-        fr: "Skills",
+        fr: "Compétences",
         en: "Skills",
       },
       about: {
-        fr: "About",
+        fr: "À propos",
         en: "About",
       },
       contact: {
@@ -217,7 +218,7 @@ export const content = {
   },
   experience: {
     company: {
-      fr: "Groupe Charles Andre (GCA)",
+      fr: "Groupe Charles André (GCA)",
       en: "Groupe Charles Andre (GCA)",
     },
     orgUnit: {
@@ -225,15 +226,15 @@ export const content = {
       en: "IT Transport & Distribution",
     },
     product: {
-      fr: "GTR (GCA Temps Reel)",
+      fr: "GTR (GCA Temps Réel)",
       en: "GTR (GCA Real-Time)",
     },
     productLabel: {
-      fr: "Produit : GTR (GCA Temps Reel)",
+      fr: "Produit : GTR (GCA Temps Réel)",
       en: "Product: GTR (GCA Real-Time)",
     },
     productOneLiner: {
-      fr: "GTR est une plateforme de tracking logistique qui centralise et diffuse en temps reel l'ETA, la position GPS et les statuts de commandes pour ameliorer la visibilite client et l'exploitation.",
+      fr: "GTR est une plateforme de tracking logistique qui centralise et diffuse en temps réel l'ETA, la position GPS et les statuts de commandes pour améliorer la visibilité client et l'exploitation.",
       en: "GTR is a logistics tracking platform that centralizes and delivers real-time ETA, GPS positions, and order status updates to improve customer visibility and operations.",
     },
     productCapabilitiesTitle: {
@@ -242,9 +243,9 @@ export const content = {
     },
     productCapabilities: {
       fr: [
-        "Centralise et structure les donnees de transport (ETA, GPS, statuts).",
+        "Centralise et structure les données de transport (ETA, GPS, statuts).",
         "Diffuse ces informations via APIs, exports et reporting.",
-        "Ameliore la visibilite client et l'exploitation (fiabilite, tracabilite).",
+        "Améliore la visibilité client et l'exploitation (fiabilité, traçabilité).",
       ],
       en: [
         "Centralizes and structures transport data (ETA, GPS, statuses).",
@@ -259,7 +260,7 @@ export const content = {
     environmentBullets: {
       fr: [
         "Service : IT Transport & Distribution",
-        "Produit : GTR (GCA Temps Reel)",
+        "Produit : GTR (GCA Temps Réel)",
         "Outils : Azure DevOps (boards), Docker",
         "Contexte : projet industriel / SI logistique",
       ],
@@ -275,15 +276,15 @@ export const content = {
       en: "Artifacts & evidence",
     },
     artifactsDisclaimer: {
-      fr: "Exemples anonymises (ou bientot disponibles) :",
+      fr: "Exemples anonymisés (ou bientôt disponibles) :",
       en: "Anonymized examples (or coming soon):",
     },
     artifacts: {
       fr: [
-        "Extrait de specification technico-fonctionnelle (API / integration)",
-        "Exemple de user story + criteres d'acceptation (Azure DevOps)",
-        "Capture anonymisee de reporting (Report Builder)",
-        "Schema simplifie : flux export XML -> depot -> EAI",
+        "Extrait de spécification technico-fonctionnelle (API / intégration)",
+        "Exemple de user story + critères d'acceptation (Azure DevOps)",
+        "Capture anonymisée de reporting (Report Builder)",
+        "Schéma simplifié : flux export XML -> dépôt -> EAI",
       ],
       en: [
         "Techno-functional spec excerpt (API / integration)",
@@ -297,15 +298,15 @@ export const content = {
       en: "Apprenticeship",
     },
     apprenticeshipNote: {
-      fr: "Role exerce en alternance sur le produit GTR.",
+      fr: "Rôle exercé en alternance sur le produit GTR.",
       en: "Role performed as part of an apprenticeship on the GTR product.",
     },
     contributionsTitle: {
-      fr: "Contributions cles",
+      fr: "Contributions clés",
       en: "Selected contributions",
     },
     contributionsIntro: {
-      fr: "Quelques contributions concretes sur GTR (sans elements sensibles).",
+      fr: "Quelques contributions concrètes sur GTR (sans éléments sensibles).",
       en: "A few concrete contributions on GTR (without sensitive details).",
     },
     contributions: [
@@ -315,18 +316,18 @@ export const content = {
           en: "ETA/GPS/Status export -> XML for EAI-based distribution",
         },
         context: {
-          fr: "Besoin de diffuser des donnees de tracking dans un format attendu par l'EAI.",
+          fr: "Besoin de diffuser des données de tracking dans un format attendu par l'EAI.",
           en: "Need to distribute tracking data in a format expected by the EAI.",
         },
         myRole: {
-          fr: "Developpeur back-end (Quarkus).",
+          fr: "Développeur back-end (Quarkus).",
           en: "Back-end developer (Quarkus).",
         },
         approachBullets: {
           fr: [
-            "Generation de fichiers XML au format specifique.",
-            "Depot dans un dossier consomme par l'EAI.",
-            "Fiabilisation via controles et diagnostic par logs.",
+            "Génération de fichiers XML au format spécifique.",
+            "Dépôt dans un dossier consommé par l'EAI.",
+            "Fiabilisation via contrôles et diagnostic par logs.",
           ],
           en: [
             "Generated XML files in the required specific format.",
@@ -335,18 +336,18 @@ export const content = {
           ],
         },
         outcome: {
-          fr: "Diffusion automatisee et plus fiable des informations de tracking.",
+          fr: "Diffusion automatisée et plus fiable des informations de tracking.",
           en: "More reliable automated distribution of tracking information.",
         },
         tags: ["Quarkus", "Java", "XML", "EAI"],
       },
       {
         title: {
-          fr: "Specifications technico-fonctionnelles (API / integrations)",
+          fr: "Spécifications technico-fonctionnelles (API / intégrations)",
           en: "Techno-functional specifications (APIs / integrations)",
         },
         context: {
-          fr: "Traduction de besoins fonctionnels en regles et contrats exploitables par les equipes.",
+          fr: "Traduction de besoins fonctionnels en règles et contrats exploitables par les équipes.",
           en: "Turning functional needs into actionable rules and contracts for delivery.",
         },
         myRole: {
@@ -355,9 +356,9 @@ export const content = {
         },
         approachBullets: {
           fr: [
-            "Cadrage du besoin, perimetre, cas limites et erreurs.",
-            "Definition du contrat (champs, regles, comportements).",
-            "Alignement via user stories et criteres d'acceptation (Azure DevOps).",
+            "Cadrage du besoin, périmètre, cas limites et erreurs.",
+            "Définition du contrat (champs, règles, comportements).",
+            "Alignement via user stories et critères d'acceptation (Azure DevOps).",
           ],
           en: [
             "Framed scope, edge cases and error handling.",
@@ -366,18 +367,18 @@ export const content = {
           ],
         },
         outcome: {
-          fr: "Specs plus claires, delivery plus fluide et moins d'ambiguites.",
+          fr: "Specs plus claires, delivery plus fluide et moins d'ambiguïtés.",
           en: "Clearer specs, smoother delivery and fewer ambiguities.",
         },
         tags: ["Azure DevOps", "API", "SQL"],
       },
       {
         title: {
-          fr: "Passage du cycle en V a Agile Scrum",
+          fr: "Passage du cycle en V à Agile Scrum",
           en: "Transition from Waterfall to Agile Scrum",
         },
         context: {
-          fr: "Ameliorer la productivite et instaurer une amelioration continue sur GTR.",
+          fr: "Améliorer la productivité et instaurer une amélioration continue sur GTR.",
           en: "Improve productivity and establish continuous improvement on GTR.",
         },
         myRole: {
@@ -388,7 +389,7 @@ export const content = {
           fr: [
             "Mise en place/animation des rituels Scrum.",
             "Structuration backlog et priorisation sur Azure DevOps.",
-            "Amelioration continue : feedback regulier et ajustements.",
+            "Amélioration continue : feedback régulier et ajustements.",
           ],
           en: [
             "Set up and facilitated Scrum ceremonies.",
@@ -397,7 +398,7 @@ export const content = {
           ],
         },
         outcome: {
-          fr: "Cadence de delivery plus reguliere et meilleure visibilite.",
+          fr: "Cadence de delivery plus régulière et meilleure visibilité.",
           en: "More regular delivery cadence and improved visibility.",
         },
         tags: ["Scrum", "Scrum Master", "Azure DevOps"],
@@ -415,12 +416,16 @@ export const content = {
       {
         id: "backendDev",
         title: {
-          fr: "Developpeur back-end",
+          fr: "Développeur back-end",
           en: "Back-end Developer",
         },
         period: {
           fr: "2021 - 2023",
           en: "2021 - 2023",
+        },
+        summary: {
+          fr: "Développement back-end sur une plateforme de tracking logistique : microservices Quarkus, données temps réel, et diffusion client.",
+          en: "Back-end development on a logistics tracking platform: Quarkus microservices, real-time data, and client distribution.",
         },
         focusTitle: {
           fr: "Focus",
@@ -428,9 +433,9 @@ export const content = {
         },
         focusAreas: {
           fr: [
-            "Services Quarkus orientes flux et donnees",
-            "Exports / integrations (XML, EAI)",
-            "Diagnostic production (logs, donnees)",
+            "Services Quarkus orientés flux et données",
+            "Exports / intégrations (XML, EAI)",
+            "Diagnostic production (logs, données)",
           ],
           en: [
             "Quarkus services for operational flows and data",
@@ -438,17 +443,25 @@ export const content = {
             "Production diagnosis (logs, data)",
           ],
         },
-        stack: ["Java", "Quarkus", "Docker", "Azure DevOps"],
+        stack: [
+          "Java",
+          "Quarkus",
+          "Docker",
+          "Azure DevOps",
+          "Kubernetes",
+          "Oracle",
+          "Postgres",
+        ],
         bullets: {
           fr: [
-            "Services backend Quarkus orientes flux et donnees.",
-            "Job d'export ETA/GPS/Statuts -> XML pour diffusion via EAI.",
-            "Debug et diagnostic (logs / donnees) en contexte production.",
+            "Microservices Quarkus conteneurisés, déployés sur Kubernetes.",
+            "Données et référentiels sur bases Oracle & PostgreSQL.",
+            "Travail sur plusieurs couches métier : réception, traitement et diffusion (ETA, GPS, statuts).",
           ],
           en: [
-            "Quarkus back-end services focused on operational flows and data.",
-            "ETA/GPS/Status export job -> XML consumed by EAI for distribution.",
-            "Debugging and diagnosis (logs/data) in a production context.",
+            "Containerized Quarkus microservices deployed on Kubernetes.",
+            "Data and references stored across Oracle & PostgreSQL databases.",
+            "Worked across business layers: ingestion, processing, and distribution (ETA, GPS, statuses).",
           ],
         },
       },
@@ -461,6 +474,10 @@ export const content = {
         period: {
           fr: "2023 - Aujourd'hui",
           en: "2023 - Present",
+        },
+        summary: {
+          fr: "Pilotage de la delivery Agile Scrum, cadrage fonctionnel et coordination via Azure DevOps.",
+          en: "Agile Scrum delivery leadership, functional framing, and coordination in Azure DevOps.",
         },
         focusTitle: {
           fr: "Focus",
@@ -481,9 +498,9 @@ export const content = {
         stack: ["Agile Scrum", "Scrum Master", "Azure DevOps"],
         bullets: {
           fr: [
-            "Animation Scrum : rituels, facilitation, amelioration continue.",
+            "Animation Scrum : rituels, facilitation, amélioration continue.",
             "Pilotage backlog et delivery dans Azure DevOps (priorisation, suivi).",
-            "Specs technico-fonctionnelles (API / integrations) + reporting (Report Builder).",
+            "Specs technico-fonctionnelles (API / intégrations) + reporting (Report Builder).",
           ],
           en: [
             "Scrum facilitation: ceremonies, team enablement, continuous improvement.",
@@ -496,11 +513,11 @@ export const content = {
   },
   skills: {
     title: {
-      fr: "Competences",
+      fr: "Compétences",
       en: "Skills",
     },
     intro: {
-      fr: "Un mix de competences techniques et humaines construit en delivery produit et data.",
+      fr: "Un mix de compétences techniques et humaines construit en delivery produit et data.",
       en: "A mix of technical and people skills built through product and data delivery.",
     },
     buckets: [
@@ -511,15 +528,15 @@ export const content = {
           en: "Back-end & APIs",
         },
         summary: {
-          fr: "Services Quarkus/Java, APIs et integrations SI avec exports XML et diagnostic prod.",
+          fr: "Services Quarkus/Java, APIs et intégrations SI avec exports XML et diagnostic prod.",
           en: "Quarkus/Java services, APIs and SI integrations with XML exports and production diagnosis.",
         },
         bullets: {
           fr: [
-            "Services Quarkus/Java orientes flux logistiques et donnees.",
-            "Conception et integration d'APIs pour besoins metier.",
+            "Services Quarkus/Java orientés flux logistiques et données.",
+            "Conception et intégration d'APIs pour besoins métier.",
             "Exports XML (ETA/GPS/Statuts) pour diffusion via EAI.",
-            "Diagnostic production : logs, donnees, investigations.",
+            "Diagnostic production : logs, données, investigations.",
           ],
           en: [
             "Quarkus/Java services focused on logistics flows and data.",
@@ -537,13 +554,13 @@ export const content = {
           en: "Data & SQL",
         },
         summary: {
-          fr: "Extraction et analyse SQL pour repondre aux besoins metier (Oracle/Postgres).",
+          fr: "Extraction et analyse SQL pour répondre aux besoins métier (Oracle/Postgres).",
           en: "SQL extraction and analysis for business needs (Oracle/Postgres).",
         },
         bullets: {
           fr: [
-            "Requetes SQL pour extraction, controle et analyse.",
-            "Traduction des besoins metier en requetes exploitables.",
+            "Requêtes SQL pour extraction, contrôle et analyse.",
+            "Traduction des besoins métier en requêtes exploitables.",
             "Travail sur bases Oracle et Postgres.",
           ],
           en: [
@@ -566,10 +583,10 @@ export const content = {
         },
         bullets: {
           fr: [
-            "Animation des rituels Scrum et facilitation d'equipe.",
+            "Animation des rituels Scrum et facilitation d'équipe.",
             "Structuration du backlog et priorisation.",
-            "Amelioration continue via feedback et ajustements.",
-            "Suivi de delivery pour donner de la visibilite.",
+            "Amélioration continue via feedback et ajustements.",
+            "Suivi de delivery pour donner de la visibilité.",
           ],
           en: [
             "Facilitate Scrum ceremonies and team routines.",
@@ -593,9 +610,9 @@ export const content = {
         bullets: {
           fr: [
             "Pilotage du delivery via Azure DevOps Boards.",
-            "Suivi, priorisation et coordination equipe/metier.",
+            "Suivi, priorisation et coordination équipe/métier.",
             "Docker pour services et environnements de travail.",
-            "Visibilite des avancements pour l'equipe et les parties prenantes.",
+            "Visibilité des avancements pour l'équipe et les parties prenantes.",
           ],
           en: [
             "Delivery steering in Azure DevOps Boards.",
@@ -619,8 +636,8 @@ export const content = {
         bullets: {
           fr: [
             "Report Builder pour visualiser le suivi et les tendances.",
-            "Construction de rapports utiles a la decision.",
-            "Monitoring de flux et donnees pour garder la qualite.",
+            "Construction de rapports utiles à la décision.",
+            "Monitoring de flux et données pour garder la qualité.",
           ],
           en: [
             "Report Builder to visualize tracking and trends.",
@@ -637,16 +654,16 @@ export const content = {
           en: "Soft skills",
         },
         summary: {
-          fr: "Facilitation, mediation et communication claire pour faire avancer la delivery.",
+          fr: "Facilitation, médiation et communication claire pour faire avancer la delivery.",
           en: "Facilitation, mediation and clear communication to move delivery forward.",
         },
         bullets: {
           fr: [
-            "Facilitation et animation d'equipe.",
-            "Gestion de profils conflictuels et mediation.",
+            "Facilitation et animation d'équipe.",
+            "Gestion de profils conflictuels et médiation.",
             "Communication claire entre tech et non-tech.",
             "Organisation, priorisation et rigueur.",
-            "Leadership de delivery sans autorite hierarchique.",
+            "Leadership de delivery sans autorité hiérarchique.",
           ],
           en: [
             "Team facilitation and session leadership.",
@@ -666,11 +683,11 @@ export const content = {
       en: "Bachelor in Web Development (MDS) 2021-2024 in apprenticeship on GTR, building a strong technical foundation.",
     },
     paragraph2: {
-      fr: "Evolution vers Chef de projet / Scrum Master avec un objectif d'alternance au Master specialise IA de SKEMA.",
+      fr: "Évolution vers Chef de projet / Scrum Master avec un objectif d'alternance au Master spécialisé IA de SKEMA.",
       en: "Transitioning to Project Manager / Scrum Master with an apprenticeship goal aligned with SKEMA's AI specialization.",
     },
     bachelorLabel: {
-      fr: "Bachelor Developpeur Web (MDS)",
+      fr: "Bachelor Développeur Web (MDS)",
       en: "Bachelor in Web Development (MDS)",
     },
     bachelorPeriod: {
@@ -688,7 +705,7 @@ export const content = {
       en: "Contact",
     },
     subtitle: {
-      fr: "Ouvert aux opportunites d'alternance et aux echanges autour de projets data/produit.",
+      fr: "Ouvert aux opportunités d'alternance et aux échanges autour de projets data/produit.",
       en: "Open to apprenticeship opportunities and discussions around data and product projects.",
     },
     links: {

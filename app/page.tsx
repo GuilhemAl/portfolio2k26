@@ -118,6 +118,9 @@ export default function Home() {
                     {l(role.period)}
                   </span>
                 </div>
+                <p className="mt-3 text-sm text-slate-600">
+                  {l(role.summary)}
+                </p>
                 <ul className="mt-3 space-y-2 text-sm text-slate-600">
                   {list(role.bullets).map((bullet) => (
                     <li key={bullet}>- {bullet}</li>
