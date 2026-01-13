@@ -43,25 +43,29 @@ export default function Home() {
   return (
     <main className="bg-[var(--bg)] text-[var(--text)]">
       <section id="home" className="scroll-mt-28 hero-gradient">
-        <div className="container-page flex flex-col gap-6 py-16">
+        <div className="container-page flex flex-col gap-5 py-12 md:py-16 lg:py-20">
           <BrandTitle name={l(content.identity.displayName)} />
           <div className="space-y-3 text-[var(--muted)]">
-            <p className="text-lg font-semibold text-[var(--text)]">
+            <p className="text-base font-semibold text-[var(--text)] sm:text-lg">
               {l(content.identity.roleHeadline)}
             </p>
-            <p className="max-w-2xl text-base">{l(content.identity.roleSubheadline)}</p>
-            <p className="max-w-2xl text-base">{l(content.identity.goal)}</p>
+            <p className="max-w-2xl text-sm sm:text-base">
+              {l(content.identity.roleSubheadline)}
+            </p>
+            <p className="max-w-2xl text-sm sm:text-base">
+              {l(content.identity.goal)}
+            </p>
           </div>
           <div className="flex flex-wrap gap-2 text-sm">
             {list(content.quickFacts).map((fact) => (
               <Chip key={fact}>{fact}</Chip>
             ))}
           </div>
-          <div className="flex flex-wrap gap-3">
-            <ButtonLink href="/#experience" variant="primary">
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <ButtonLink href="/#experience" variant="primary" fullWidth>
               {l(content.ctas.primary)}
             </ButtonLink>
-            <ButtonLink href="/#contact" variant="secondary">
+            <ButtonLink href="/#contact" variant="secondary" fullWidth>
               {l(content.ctas.secondary)}
             </ButtonLink>
           </div>
@@ -94,7 +98,7 @@ export default function Home() {
         </div>
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {content.experience.roles.map((role) => (
-            <Card key={role.id} className="p-5">
+            <Card key={role.id}>
               <div className="flex items-baseline justify-between gap-3">
                 <h3 className="text-lg font-semibold text-[var(--text)]">
                   {l(role.title)}
@@ -126,9 +130,9 @@ export default function Home() {
           <p className="mt-2 text-sm text-[var(--muted)]">
             {l(content.experience.contributionsIntro)}
           </p>
-          <div className="mt-4 grid gap-4 md:grid-cols-3">
+          <div className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {content.experience.contributions.map((contribution) => (
-              <Card key={contribution.title.en} className="p-5">
+              <Card key={contribution.title.en}>
                 <h4 className="text-base font-semibold text-[var(--text)]">
                   {l(contribution.title)}
                 </h4>
@@ -158,9 +162,9 @@ export default function Home() {
       </Section>
 
       <Section id="skills" className="scroll-mt-28" title={l(content.skills.title)}>
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {content.skills.buckets.map((bucket) => (
-            <Card key={bucket.key} className="p-5">
+            <Card key={bucket.key}>
               <h3 className="text-lg font-semibold text-[var(--text)]">
                 {l(bucket.title)}
               </h3>
@@ -188,9 +192,9 @@ export default function Home() {
         title={l(content.academics.homeTitle)}
         subtitle={l(content.academics.homeIntro)}
       >
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {content.academics.items.map((item) => (
-            <Card key={item.key} className="p-5">
+            <Card key={item.key}>
               <div className="flex items-center justify-between gap-3">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
                   {l(item.yearTitle)}
@@ -253,7 +257,7 @@ export default function Home() {
               value: contactPhone,
             },
           ].map((item) => (
-            <Card key={item.key} className="p-4">
+            <Card key={item.key}>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
                 {item.label}
               </p>
@@ -275,11 +279,12 @@ export default function Home() {
             </Card>
           ))}
         </div>
-        <div className="mt-6 flex flex-wrap gap-3">
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <ButtonLink
             href={contactLinkedIn}
             variant="primary"
             external
+            fullWidth
           >
             {l(content.contact.labels.primaryCta)}
           </ButtonLink>

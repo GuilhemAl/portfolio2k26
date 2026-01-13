@@ -28,7 +28,7 @@ export default function ExperiencePage() {
 
         <header className="mt-6">
           <div className="flex flex-wrap items-center gap-3">
-            <h1 className="text-4xl font-semibold tracking-[-0.02em] text-[var(--text)]">
+            <h1 className="text-3xl font-semibold tracking-[-0.02em] text-[var(--text)] sm:text-4xl">
               {l(content.pageTitles.experience)}
             </h1>
             <Badge variant="accent">{l(content.experience.apprenticeshipLabel)}</Badge>
@@ -118,7 +118,7 @@ export default function ExperiencePage() {
           </p>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             {content.experience.contributions.map((contribution) => (
-              <Card key={contribution.title.en} className="p-5">
+              <Card key={contribution.title.en}>
                 <h3 className="text-base font-semibold text-[var(--text)]">
                   {l(contribution.title)}
                 </h3>
@@ -146,11 +146,11 @@ export default function ExperiencePage() {
           </div>
         </Card>
 
-        <div className="mt-10 flex flex-wrap gap-3">
-          <ButtonLink href="/skills" variant="primary">
+        <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+          <ButtonLink href="/skills" variant="primary" fullWidth>
             {l(content.labels.seeSkills)}
           </ButtonLink>
-          <ButtonLink href="/" variant="secondary">
+          <ButtonLink href="/" variant="secondary" fullWidth>
             {l(content.labels.back)}
           </ButtonLink>
         </div>

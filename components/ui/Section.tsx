@@ -18,11 +18,13 @@ export function Section({
       <div className="container-page">
         {title ? (
           <header className="mb-6">
-            <h2 className="text-2xl font-semibold text-[var(--text)]">
+            <h2 className="text-2xl font-semibold tracking-[-0.01em] text-[var(--text)] md:text-3xl">
               {title}
             </h2>
             {subtitle ? (
-              <p className="mt-2 text-sm text-[var(--muted)]">{subtitle}</p>
+              <p className="mt-2 max-w-prose text-sm text-[var(--muted)] md:text-base">
+                {subtitle}
+              </p>
             ) : null}
           </header>
         ) : null}

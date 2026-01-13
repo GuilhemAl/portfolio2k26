@@ -18,7 +18,7 @@ export default function AboutPage() {
         </ButtonLink>
 
         <header className="mt-6">
-          <h1 className="text-4xl font-semibold tracking-[-0.02em] text-[var(--text)]">
+          <h1 className="text-3xl font-semibold tracking-[-0.02em] text-[var(--text)] sm:text-4xl">
             {l(content.about.aboutPageTitle)}
           </h1>
           <p className="mt-3 max-w-2xl text-[var(--muted)]">
