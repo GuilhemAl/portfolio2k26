@@ -94,11 +94,16 @@ export type Content = {
     }>;
   };
   about: {
-    paragraph1: LocalizedString;
-    paragraph2: LocalizedString;
-    bachelorLabel: LocalizedString;
-    bachelorPeriod: LocalizedString;
-    bachelorApprenticeship: LocalizedString;
+    aboutPageTitle: LocalizedString;
+    aboutIntro: LocalizedString;
+    aboutTimeline: Array<{
+      yearTitle: LocalizedString;
+      paragraphs: LocalizedList;
+    }>;
+    aboutFutureTitle: LocalizedString;
+    aboutFutureParagraphs: LocalizedList;
+    aboutValuesTitle: LocalizedString;
+    aboutValuesBullets: LocalizedList;
   };
   contact: {
     title: LocalizedString;
@@ -683,25 +688,111 @@ export const content = {
     ],
   },
   about: {
-    paragraph1: {
-      fr: "Bachelor Dev Web MDS 2021-2024 en alternance sur GTR, un socle technique solide.",
-      en: "Bachelor in Web Development (MDS) 2021-2024 in apprenticeship on GTR, building a strong technical foundation.",
+    aboutPageTitle: {
+      fr: "À propos",
+      en: "About",
     },
-    paragraph2: {
-      fr: "Évolution vers Chef de projet / Scrum Master avec un objectif d'alternance au Master spécialisé IA de SKEMA.",
-      en: "Transitioning to Project Manager / Scrum Master with an apprenticeship goal aligned with SKEMA's AI specialization.",
+    aboutIntro: {
+      fr: "Depuis toujours attiré par l'informatique, j'ai construit un parcours entre technique et pilotage produit. Après un échec en 2020–2021, j'ai rebâti un socle solide et pris des responsabilités sur GTR.",
+      en: "Drawn to computing early on, I built a path between hands-on engineering and product delivery. After a setback in 2020–2021, I rebuilt a strong foundation and took on responsibilities on GTR.",
     },
-    bachelorLabel: {
-      fr: "Bachelor Développeur Web (MDS)",
-      en: "Bachelor in Web Development (MDS)",
+    aboutTimeline: [
+      {
+        yearTitle: {
+          fr: "2020–2021",
+          en: "2020–2021",
+        },
+        paragraphs: {
+          fr: [
+            "Passionné d'informatique depuis l'enfance, initié par mon grand-père, j'intègre un IUT Informatique.",
+            "L'année Covid bouleverse le parcours : une première année ratée, une remise en question, puis la décision de repartir sur des bases solides.",
+          ],
+          en: [
+            "Passionate about computing since childhood, sparked by my grandfather, I joined an IUT in Computer Science.",
+            "The Covid year disrupted everything: a failed first year, a period of doubt, and the decision to rebuild on stronger foundations.",
+          ],
+        },
+      },
+      {
+        yearTitle: {
+          fr: "2021–2024",
+          en: "2021–2024",
+        },
+        paragraphs: {
+          fr: [
+            "J'intègre le Bachelor Développeur Web (MDS) pour reconstruire un socle technique solide et durable.",
+            "Trois ans pour consolider la pratique, la rigueur et l'envie de livrer des projets utiles.",
+          ],
+          en: [
+            "I joined the Web Development Bachelor (MDS) to rebuild a solid, lasting technical base.",
+            "Three years to strengthen practice, rigor, and the drive to ship useful projects.",
+          ],
+        },
+      },
+      {
+        yearTitle: {
+          fr: "2023–2024",
+          en: "2023–2024",
+        },
+        paragraphs: {
+          fr: [
+            "Dernière année du Bachelor en alternance chez Groupe Charles André, sur le produit GTR, en tant que développeur back-end.",
+            "Un challenge important, et une vraie réussite personnelle et professionnelle.",
+          ],
+          en: [
+            "Final year of the Bachelor as an apprentice at Groupe Charles André on the GTR product, working as a back-end developer.",
+            "A big challenge and a real personal and professional success.",
+          ],
+        },
+      },
+      {
+        yearTitle: {
+          fr: "2024–Aujourd'hui",
+          en: "2024–Today",
+        },
+        paragraphs: {
+          fr: [
+            "Après le Bachelor, GCA me propose d'évoluer vers Chef de Projet sur le même produit GTR, au sein de l'IT Transport & Distribution. En parallèle, j'intègre l'IAE Montpellier en CMSI, en phase avec le virage management SI.",
+            "À mon arrivée, le projet est en cycle en V avec des livraisons en lots. Avec l'équipe et mon tuteur, nous basculons en Agile/Scrum et installons une cadence d'environ une livraison toutes les trois semaines (vs 3–4 mois), avec reporting, specs/user stories, rôle de Scrum Master et COPIL mensuels. En période école, j'organise la continuité via briefings et relais par mon N+1.",
+          ],
+          en: [
+            "After the Bachelor, GCA offered me a transition to Project Manager on the same GTR product within IT Transport & Distribution. In parallel, I joined IAE Montpellier (CMSI), aligned with my shift toward IT management.",
+            "When I arrived, the project ran in a waterfall cycle with batch releases. With the team and my mentor, we moved to Agile/Scrum and set a rhythm of roughly one release every three weeks (vs one every 3–4 months), adding reporting, specs/user stories, a Scrum Master role, and monthly steering committees. During school periods, I prepare handover briefings and my manager takes over.",
+          ],
+        },
+      },
+    ],
+    aboutFutureTitle: {
+      fr: "Et maintenant",
+      en: "What's next",
     },
-    bachelorPeriod: {
-      fr: "2021 - 2024",
-      en: "2021 - 2024",
+    aboutFutureParagraphs: {
+      fr: [
+        "Mon objectif est de devenir Chef de Projet IA / AI Product Owner et de piloter des transformations à l'interface data/tech ↔ métier.",
+        "Le MS Chef de Projet IA de SKEMA m'attire pour son approche hybride business + techno, sa capacité à créer de la valeur, et sa dimension éthique et juridique, avec un pragmatisme orienté delivery.",
+      ],
+      en: [
+        "My goal is to become an AI Project Manager / AI Product Owner and lead transformations at the intersection of data, tech, and business.",
+        "SKEMA's AI Project Manager MS appeals to me for its hybrid business + tech approach, its focus on value creation, and its ethical and legal dimension, grounded in pragmatic delivery.",
+      ],
     },
-    bachelorApprenticeship: {
-      fr: "En alternance chez GCA, sur le projet GTR.",
-      en: "Apprenticeship at GCA, on the GTR project.",
+    aboutValuesTitle: {
+      fr: "Ce qui me guide",
+      en: "What drives me",
+    },
+    aboutValuesBullets: {
+      fr: [
+        "Résilience et lucidité face à l'échec, pour rebondir vite.",
+        "Démarche de professionnel qui outille sa pratique et documente la décision.",
+        "Pilotage de la complexité dans l'urgence, sans perdre le cap produit.",
+        "Sens du collectif et du service pour faire avancer la delivery.",
+      ],
+      en: [
+        "Resilience and clear-sightedness after setbacks, to bounce back quickly.",
+        "A professional mindset that tools the practice and documents decisions.",
+        "Ability to steer complexity under time pressure without losing product focus.",
+        "Team-first, service-oriented mindset to keep delivery moving.",
+      ],
     },
   },
   contact: {

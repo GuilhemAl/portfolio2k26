@@ -13,6 +13,7 @@ export default function Home() {
   const l = (value: LocalizedString) => t(value.fr, value.en);
   const list = (value: LocalizedList) => (lang === "fr" ? value.fr : value.en);
   const deepDiveLabel = l(content.labels.deepDive);
+  const futureTeaser = list(content.about.aboutFutureParagraphs)[0];
   const contactLinks = [
     {
       id: "linkedIn",
@@ -228,8 +229,8 @@ export default function Home() {
             {l(content.navigation.items.about)}
           </h2>
           <div className="mt-4 space-y-4 text-slate-600">
-            <p>{l(content.about.paragraph1)}</p>
-            <p>{l(content.about.paragraph2)}</p>
+            <p>{l(content.about.aboutIntro)}</p>
+            {futureTeaser ? <p>{futureTeaser}</p> : null}
           </div>
           <Link
             href="/about"
