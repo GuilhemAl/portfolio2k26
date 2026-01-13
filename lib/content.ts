@@ -470,8 +470,8 @@ export const content = {
           en: "Back-end Developer",
         },
         period: {
-          fr: "2021 - 2023",
-          en: "2021 - 2023",
+          fr: "2023 - 2024",
+          en: "2023 - 2024",
         },
         summary: {
           fr: "Développement back-end sur une plateforme de tracking logistique : microservices Quarkus, données temps réel, et diffusion client.",
@@ -522,8 +522,8 @@ export const content = {
           en: "Project Manager / Scrum Master",
         },
         period: {
-          fr: "2023 - Aujourd'hui",
-          en: "2023 - Present",
+          fr: "2024 - Aujourd'hui",
+          en: "2024 - Present",
         },
         summary: {
           fr: "Pilotage de la delivery Agile Scrum, cadrage fonctionnel et coordination via Azure DevOps.",
