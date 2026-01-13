@@ -177,8 +177,8 @@ export const content = {
     },
   },
   quickFacts: {
-    fr: ["Agile Scrum", "Azure DevOps", "Quarkus"],
-    en: ["Agile Scrum", "Azure DevOps", "Quarkus"],
+    fr: ["Agile Scrum", "Azure DevOps", "Quarkus", "IA"],
+    en: ["Agile Scrum", "Azure DevOps", "Quarkus", "AI"],
   },
   ctas: {
     primary: {
@@ -756,20 +756,20 @@ export const content = {
       {
         key: "iut-info",
         yearTitle: {
-          fr: "2020-2021",
-          en: "2020-2021",
+          fr: "Septembre 2020 - Juillet 2021",
+          en: "September 2020 - July 2021",
         },
         title: {
-          fr: "IUT Informatique - 1re année (échec)",
-          en: "Computer Science IUT - Year 1 (setback)",
+          fr: "IUT Informatique - 1re année",
+          en: "Computer Science IUT - Year 1",
         },
         status: {
-          fr: "Tentative",
-          en: "Attempted",
+          fr: "Première année",
+          en: "Year 1",
         },
         context: {
-          fr: "Année Covid, rythme cassé, remise en question et goût d'échec.",
-          en: "COVID year, disrupted rhythm, self-questioning and a strong sense of failure.",
+          fr: "Année Covid, rythme cassé, remise en question.",
+          en: "COVID year, disrupted rhythm, self-questioning.",
         },
         learnedTitle: {
           fr: "Ce que j'en retiens",
@@ -778,13 +778,13 @@ export const content = {
         learnedBullets: {
           fr: [
             "Retour aux fondamentaux : algorithmes, architecture, rigueur.",
-            "Comprendre mes limites du moment et reconstruire une trajectoire.",
-            "Résilience : transformer un échec en décision structurante.",
+            "Prendre du recul sur mes méthodes d'apprentissage.",
+            "Importance d'un cadre clair et d'un rythme régulier.",
           ],
           en: [
             "Back to fundamentals: algorithms, architecture, rigor.",
-            "Understanding my limits at that time and rebuilding a trajectory.",
-            "Resilience: turning a setback into a deliberate decision.",
+            "Reassessing how I learn to improve.",
+            "The importance of a clear framework and a steady rhythm.",
           ],
         },
         themesTitle: {
@@ -807,8 +807,8 @@ export const content = {
       {
         key: "bachelor-dev-web",
         yearTitle: {
-          fr: "2021-2024",
-          en: "2021-2024",
+          fr: "Septembre 2021 - Juillet 2024",
+          en: "September 2021 - July 2024",
         },
         title: {
           fr: "Bachelor Développeur Web (MDS)",
@@ -855,15 +855,15 @@ export const content = {
           ],
         },
         apprenticeshipNote: {
-          fr: "Dernière année 2023-2024 en alternance (GCA) en tant que développeur back-end sur GTR.",
-          en: "Final year 2023-2024 as an apprenticeship (GCA) as a back-end developer on GTR.",
+          fr: "Dernière année (septembre 2023 - juillet 2024) en alternance (GCA) en tant que développeur back-end sur GTR.",
+          en: "Final year (September 2023 - July 2024) as an apprenticeship (GCA) as a back-end developer on GTR.",
         },
       },
       {
         key: "master-cmsi",
         yearTitle: {
-          fr: "2024-Aujourd'hui",
-          en: "2024-Present",
+          fr: "Septembre 2024 - Aujourd'hui",
+          en: "September 2024 - Present",
         },
         title: {
           fr: "Master CMSI - IAE Montpellier (en cours)",
@@ -932,14 +932,14 @@ export const content = {
       en: "About",
     },
     aboutIntro: {
-      fr: "Depuis toujours attiré par l'informatique, j'ai construit un parcours entre technique et pilotage produit. Après un échec en 2020–2021, j'ai rebâti un socle solide et pris des responsabilités sur GTR.",
-      en: "Drawn to computing early on, I built a path between hands-on engineering and product delivery. After a setback in 2020–2021, I rebuilt a strong foundation and took on responsibilities on GTR.",
+      fr: "Depuis toujours attiré par l'informatique, j'ai construit un parcours entre technique et pilotage produit. Après un échec en septembre 2020 - juillet 2021, j'ai rebâti un socle solide et pris des responsabilités sur GTR.",
+      en: "Drawn to computing early on, I built a path between hands-on engineering and product delivery. After a setback in September 2020 - July 2021, I rebuilt a strong foundation and took on responsibilities on GTR.",
     },
     aboutTimeline: [
       {
         yearTitle: {
-          fr: "2020–2021",
-          en: "2020–2021",
+          fr: "Septembre 2020 - Juillet 2021",
+          en: "September 2020 - July 2021",
         },
         paragraphs: {
           fr: [
@@ -954,8 +954,8 @@ export const content = {
       },
       {
         yearTitle: {
-          fr: "2021–2024",
-          en: "2021–2024",
+          fr: "Septembre 2021 - Juillet 2024",
+          en: "September 2021 - July 2024",
         },
         paragraphs: {
           fr: [
@@ -970,8 +970,8 @@ export const content = {
       },
       {
         yearTitle: {
-          fr: "2023–2024",
-          en: "2023–2024",
+          fr: "Septembre 2023 - Juillet 2024",
+          en: "September 2023 - July 2024",
         },
         paragraphs: {
           fr: [
@@ -986,8 +986,8 @@ export const content = {
       },
       {
         yearTitle: {
-          fr: "2024–Aujourd'hui",
-          en: "2024–Today",
+          fr: "Septembre 2024 - Aujourd'hui",
+          en: "September 2024 - Present",
         },
         paragraphs: {
           fr: [
