@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { BrandTitle } from "@/components/BrandTitle";
 import { Badge } from "@/components/ui/Badge";
@@ -43,28 +44,47 @@ export default function Home() {
   return (
     <main className="bg-[var(--bg)] text-[var(--text)]">
       <section id="home" className="scroll-mt-28 hero-gradient">
-        <div className="container-page flex flex-col gap-5 py-12 md:py-16 lg:py-20">
-          <BrandTitle name={l(content.identity.displayName)} />
-          <div className="space-y-3 text-[var(--muted)]">
-            <p className="text-base font-semibold text-[var(--text)] sm:text-lg">
-              {l(content.identity.roleHeadline)}
-            </p>
-            <p className="max-w-2xl text-sm sm:text-base">
-              {l(content.identity.roleSubheadline)}
-            </p>
-            <p className="max-w-2xl text-sm sm:text-base">
-              {l(content.identity.goal)}
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2 text-sm">
-            {list(content.quickFacts).map((fact) => (
-              <Chip key={fact}>{fact}</Chip>
-            ))}
-          </div>
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="/#contact" variant="primary" fullWidth>
-              {l(content.ctas.secondary)}
-            </ButtonLink>
+        <div className="container-page py-12 md:py-16 lg:py-20">
+          <div className="flex flex-col gap-8 md:flex-row md:items-start md:gap-10">
+            <div className="flex-1">
+              <div className="flex flex-col gap-5">
+                <BrandTitle name={l(content.identity.displayName)} />
+                <div className="space-y-3 text-[var(--muted)]">
+                  <p className="text-base font-semibold text-[var(--text)] sm:text-lg">
+                    {l(content.identity.roleHeadline)}
+                  </p>
+                  <p className="max-w-2xl text-sm sm:text-base">
+                    {l(content.identity.roleSubheadline)}
+                  </p>
+                  <p className="max-w-2xl text-sm sm:text-base">
+                    {l(content.identity.goal)}
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-2 text-sm">
+                  {list(content.quickFacts).map((fact) => (
+                    <Chip key={fact}>{fact}</Chip>
+                  ))}
+                </div>
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <ButtonLink href="/#contact" variant="primary" fullWidth>
+                    {l(content.ctas.secondary)}
+                  </ButtonLink>
+                </div>
+              </div>
+            </div>
+            <div className="hidden justify-center md:flex md:flex-1 md:justify-center">
+              <div className="relative h-40 w-40 overflow-hidden rounded-full border-2 border-[var(--accent)] bg-[var(--surface-strong)] shadow-[var(--shadow)] sm:h-44 sm:w-44 md:h-52 md:w-52 lg:h-60 lg:w-60">
+                <Image
+                  src="/photo.jpeg"
+                  alt="Portrait of Guilhem Albus"
+                  fill
+                  priority
+                  quality={100}
+                  sizes="(min-width: 1024px) 240px, (min-width: 768px) 208px, (min-width: 640px) 176px, 160px"
+                  className="object-cover object-[center_top]"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
