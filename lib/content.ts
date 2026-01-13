@@ -775,8 +775,8 @@ export const content = {
           ],
         },
         themesTitle: {
-          fr: "Thèmes abordés",
-          en: "Typical themes",
+          fr: "Thèmes typiques abordés",
+          en: "Typical themes covered",
         },
         themesBullets: {
           fr: [
