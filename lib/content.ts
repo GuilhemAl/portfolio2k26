@@ -132,6 +132,7 @@ export type Content = {
     title: LocalizedString;
     subtitle: LocalizedString;
     availabilityNote: LocalizedString;
+    emailHint: LocalizedString;
     fields: {
       email: string;
       phone: string;
@@ -144,14 +145,14 @@ export type Content = {
       linkedinLabel: LocalizedString;
       githubLabel: LocalizedString;
       detailsTitle: LocalizedString;
-      ctaEmail: LocalizedString;
-      ctaPhone: LocalizedString;
-      ctaLinkedIn: LocalizedString;
+      primaryCta: LocalizedString;
+      secondaryCta: LocalizedString;
       ctaGitHub: LocalizedString;
+      mailtoLabel: LocalizedString;
+      phoneLinkLabel: LocalizedString;
       ctaCopy: LocalizedString;
       copied: LocalizedString;
       back: LocalizedString;
-      ctaTalk: LocalizedString;
     };
   };
 };
@@ -1039,12 +1040,16 @@ export const content = {
       en: "Contact",
     },
     subtitle: {
-      fr: "Je recherche une alternance et je suis pr?t ? m'investir pleinement. Ouvert aux ?changes et opportunit?s.",
+      fr: "Je recherche une alternance et je suis prêt à m'investir pleinement. Ouvert aux échanges et opportunités.",
       en: "I'm looking for an apprenticeship and ready to fully commit. Open to discussions and opportunities.",
     },
     availabilityNote: {
-      fr: "N'h?sitez pas ? me contacter : je r?ponds rapidement.",
-      en: "Feel free to reach out ? I respond quickly.",
+      fr: "N'hésitez pas à me contacter : je réponds rapidement.",
+      en: "Feel free to reach out — I respond quickly.",
+    },
+    emailHint: {
+      fr: "Le bouton \"copier\" est le plus fiable (mailto dépend de ton navigateur).",
+      en: "Copy is the most reliable option (mailto depends on your system).",
     },
     fields: {
       email: "albusguilhem@gmail.com",
@@ -1058,7 +1063,7 @@ export const content = {
         en: "Email",
       },
       phoneLabel: {
-        fr: "T?l?phone",
+        fr: "Téléphone",
         en: "Phone",
       },
       linkedinLabel: {
@@ -1070,40 +1075,40 @@ export const content = {
         en: "GitHub",
       },
       detailsTitle: {
-        fr: "Coordonn?es",
+        fr: "Coordonnées",
         en: "Contact details",
       },
-      ctaEmail: {
-        fr: "M'?crire",
-        en: "Email me",
-      },
-      ctaPhone: {
-        fr: "Appeler",
-        en: "Call",
-      },
-      ctaLinkedIn: {
+      primaryCta: {
         fr: "Me contacter sur LinkedIn",
         en: "Message me on LinkedIn",
+      },
+      secondaryCta: {
+        fr: "Copier mon email",
+        en: "Copy my email",
       },
       ctaGitHub: {
         fr: "Voir GitHub",
         en: "View GitHub",
+      },
+      mailtoLabel: {
+        fr: "Ouvrir dans mon client mail",
+        en: "Open in mail client",
+      },
+      phoneLinkLabel: {
+        fr: "Appeler",
+        en: "Call",
       },
       ctaCopy: {
         fr: "Copier",
         en: "Copy",
       },
       copied: {
-        fr: "Copi?",
+        fr: "Copié",
         en: "Copied",
       },
       back: {
         fr: "Retour",
         en: "Back",
-      },
-      ctaTalk: {
-        fr: "Discutons",
-        en: "Let's talk",
       },
     },
   },

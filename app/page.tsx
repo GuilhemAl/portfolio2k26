@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { BrandTitle } from "@/components/BrandTitle";
 import { content, type LocalizedList, type LocalizedString } from "@/lib/content";
 import { useI18n } from "@/lib/i18n";
@@ -14,8 +15,25 @@ export default function Home() {
   const list = (value: LocalizedList) => (lang === "fr" ? value.fr : value.en);
   const deepDiveLabel = l(content.labels.deepDive);
   const futureTeaser = list(content.about.aboutFutureParagraphs)[0];
+  const [copiedField, setCopiedField] = useState<"email" | "phone" | null>(
+    null,
+  );
   const contactEmail = content.contact.fields.email;
+  const contactPhone = content.contact.fields.phone;
   const contactLinkedIn = content.contact.fields.linkedin;
+
+  const handleCopy = async (field: "email" | "phone", value: string) => {
+    if (!navigator?.clipboard) {
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopiedField(field);
+      window.setTimeout(() => setCopiedField(null), 2000);
+    } catch {
+      setCopiedField(null);
+    }
+  };
 
   return (
     <main className="bg-slate-50">
@@ -273,20 +291,55 @@ export default function Home() {
           <p className="mt-2 max-w-2xl text-slate-600">
             {l(content.contact.availabilityNote)}
           </p>
-          <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-700">
-            <a
-              href={`mailto:${contactEmail}`}
-              className="rounded-full border border-slate-300/80 bg-slate-900 px-4 py-2 text-white transition hover:bg-slate-800"
-            >
-              {l(content.contact.labels.ctaEmail)}
-            </a>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            {[
+              {
+                key: "email",
+                label: l(content.contact.labels.emailLabel),
+                value: contactEmail,
+              },
+              {
+                key: "phone",
+                label: l(content.contact.labels.phoneLabel),
+                value: contactPhone,
+              },
+            ].map((item) => (
+              <div
+                key={item.key}
+                className="rounded-2xl border border-slate-200/80 bg-white/80 p-4"
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                  {item.label}
+                </p>
+                <p className="mt-2 text-sm text-slate-700 select-text break-all">
+                  {item.value}
+                </p>
+                <button
+                  type="button"
+                  onClick={() =>
+                    handleCopy(
+                      item.key === "email" ? "email" : "phone",
+                      item.value,
+                    )
+                  }
+                  aria-label={`${l(content.contact.labels.ctaCopy)} ${item.label}`}
+                  className="mt-3 rounded-full border border-slate-300/80 bg-slate-900 px-4 py-2 text-xs font-semibold text-white transition hover:bg-slate-800"
+                >
+                  {copiedField === item.key
+                    ? l(content.contact.labels.copied)
+                    : l(content.contact.labels.ctaCopy)}
+                </button>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 flex flex-wrap gap-3">
             <a
               href={contactLinkedIn}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-slate-300/80 bg-white px-4 py-2 transition hover:bg-slate-100"
+              className="inline-flex items-center rounded-full border border-slate-300/80 bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
             >
-              {l(content.contact.labels.ctaLinkedIn)}
+              {l(content.contact.labels.primaryCta)}
             </a>
           </div>
         </section>
