@@ -164,8 +164,8 @@ export const content = {
       en: "Guilhem Albus",
     },
     roleHeadline: {
-      fr: "Chef de projet IT & Data (ex-Backend Quarkus)",
-      en: "IT & Data Project Manager (ex-Backend Quarkus)",
+      fr: "Chef de projet IT & Data",
+      en: "IT & Data Project Manager",
     },
     roleSubheadline: {
       fr: "Scrum Master sur GTR (GCA) - delivery agile, specs technico-fonctionnelles, intégrations SI.",
