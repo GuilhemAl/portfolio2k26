@@ -13,6 +13,7 @@ export function Navbar() {
     { label: l(content.navigation.items.home), href: "/#home" },
     { label: l(content.navigation.items.experience), href: "/#experience" },
     { label: l(content.navigation.items.skills), href: "/#skills" },
+    { label: l(content.navigation.items.academics), href: "/#academics" },
     { label: l(content.navigation.items.about), href: "/#about" },
     { label: l(content.navigation.items.contact), href: "/#contact" },
   ];

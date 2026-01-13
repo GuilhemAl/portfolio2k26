@@ -224,6 +224,44 @@ export default function Home() {
           </Link>
         </section>
 
+        <section id="academics" className={sectionClass}>
+          <h2 className="text-2xl font-semibold text-slate-900">
+            {l(content.academics.homeTitle)}
+          </h2>
+          <p className="mt-3 max-w-2xl text-sm text-slate-600">
+            {l(content.academics.homeIntro)}
+          </p>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {content.academics.items.map((item) => (
+              <article
+                key={item.key}
+                className="rounded-2xl border border-slate-200/80 bg-white/80 p-5"
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                    {l(item.yearTitle)}
+                  </p>
+                  <span className="rounded-full border border-slate-200/80 bg-slate-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-600">
+                    {l(item.status)}
+                  </span>
+                </div>
+                <h3 className="mt-3 text-base font-semibold text-slate-900">
+                  {l(item.title)}
+                </h3>
+                <p className="mt-2 text-sm text-slate-600">
+                  {l(item.context)}
+                </p>
+              </article>
+            ))}
+          </div>
+          <Link
+            href="/academics"
+            className="mt-6 inline-flex items-center rounded-full border border-slate-300/80 bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
+          >
+            {l(content.academics.homeCta)}
+          </Link>
+        </section>
+
         <section id="about" className={sectionClass}>
           <h2 className="text-2xl font-semibold text-slate-900">
             {l(content.navigation.items.about)}

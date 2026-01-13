@@ -40,6 +40,7 @@ export type Content = {
       home: LocalizedString;
       experience: LocalizedString;
       skills: LocalizedString;
+      academics: LocalizedString;
       about: LocalizedString;
       contact: LocalizedString;
     };
@@ -92,6 +93,28 @@ export type Content = {
       stack: string[];
       bullets: LocalizedList;
     }>;
+  };
+  academics: {
+    navLabel: LocalizedString;
+    homeTitle: LocalizedString;
+    homeIntro: LocalizedString;
+    homeCta: LocalizedString;
+    pageTitle: LocalizedString;
+    pageIntro: LocalizedString;
+    items: Array<{
+      key: string;
+      yearTitle: LocalizedString;
+      title: LocalizedString;
+      status: LocalizedString;
+      context: LocalizedString;
+      learnedTitle: LocalizedString;
+      learnedBullets: LocalizedList;
+      themesTitle: LocalizedString;
+      themesBullets: LocalizedList;
+      apprenticeshipNote?: LocalizedString;
+    }>;
+    futureTitle: LocalizedString;
+    futureParagraphs: LocalizedList;
   };
   about: {
     aboutPageTitle: LocalizedString;
@@ -215,6 +238,10 @@ export const content = {
       skills: {
         fr: "Compétences",
         en: "Skills",
+      },
+      academics: {
+        fr: "Parcours",
+        en: "Academics",
       },
       about: {
         fr: "À propos",
@@ -686,6 +713,205 @@ export const content = {
         tags: ["Facilitation", "Communication", "Conflict management", "Leadership"],
       },
     ],
+  },
+  academics: {
+    navLabel: {
+      fr: "Parcours",
+      en: "Academics",
+    },
+    homeTitle: {
+      fr: "Parcours académique",
+      en: "Academic background",
+    },
+    homeIntro: {
+      fr: "Un socle technique construit dans le dev, puis une bascule vers le management des SI.",
+      en: "A technical foundation built through development, then a shift toward IS management.",
+    },
+    homeCta: {
+      fr: "Creuser",
+      en: "Dive in",
+    },
+    pageTitle: {
+      fr: "Parcours académique",
+      en: "Academic background",
+    },
+    pageIntro: {
+      fr: "Ce que chaque étape m'a apporté, y compris les détours.",
+      en: "What each step taught me, including the detours.",
+    },
+    items: [
+      {
+        key: "iut-info",
+        yearTitle: {
+          fr: "2020-2021",
+          en: "2020-2021",
+        },
+        title: {
+          fr: "IUT Informatique - 1re année (échec)",
+          en: "Computer Science IUT - Year 1 (setback)",
+        },
+        status: {
+          fr: "Tentative",
+          en: "Attempted",
+        },
+        context: {
+          fr: "Année Covid, rythme cassé, remise en question et goût d'échec.",
+          en: "COVID year, disrupted rhythm, self-questioning and a strong sense of failure.",
+        },
+        learnedTitle: {
+          fr: "Ce que j'en retiens",
+          en: "What I took from it",
+        },
+        learnedBullets: {
+          fr: [
+            "Retour aux fondamentaux : algorithmes, architecture, rigueur.",
+            "Comprendre mes limites du moment et reconstruire une trajectoire.",
+            "Résilience : transformer un échec en décision structurante.",
+          ],
+          en: [
+            "Back to fundamentals: algorithms, architecture, rigor.",
+            "Understanding my limits at that time and rebuilding a trajectory.",
+            "Resilience: turning a setback into a deliberate decision.",
+          ],
+        },
+        themesTitle: {
+          fr: "Thèmes abordés",
+          en: "Typical themes",
+        },
+        themesBullets: {
+          fr: [
+            "Initiation au développement, programmation orientée objet.",
+            "Architecture des ordinateurs, bases bas niveau.",
+            "Mathématiques discrètes, graphes, PPP.",
+          ],
+          en: [
+            "Programming basics, object-oriented programming.",
+            "Computer architecture, low-level foundations.",
+            "Discrete math, graphs, personal/professional project.",
+          ],
+        },
+      },
+      {
+        key: "bachelor-dev-web",
+        yearTitle: {
+          fr: "2021-2024",
+          en: "2021-2024",
+        },
+        title: {
+          fr: "Bachelor Développeur Web (MDS)",
+          en: "Bachelor in Web Development (MDS)",
+        },
+        status: {
+          fr: "Diplôme obtenu",
+          en: "Completed",
+        },
+        context: {
+          fr: "Reconstruction d'un socle technique solide, professionnalisation progressive.",
+          en: "Rebuilding a solid technical foundation with a progressive professional approach.",
+        },
+        learnedTitle: {
+          fr: "Compétences consolidées",
+          en: "Skills strengthened",
+        },
+        learnedBullets: {
+          fr: [
+            "Conception logicielle, qualité, tests, bonnes pratiques.",
+            "Développement SQL & API, structuration des données.",
+            "Cybersécurité, infrastructure, travail en mode projet.",
+          ],
+          en: [
+            "Software design, quality, testing, good practices.",
+            "SQL & API development, data structuring.",
+            "Cybersecurity, infrastructure, project-based work.",
+          ],
+        },
+        themesTitle: {
+          fr: "Thèmes de formation",
+          en: "Program themes",
+        },
+        themesBullets: {
+          fr: [
+            "Git, design patterns, gestion de projet et animation de réunions.",
+            "Développement API, application web/mobile/desktop.",
+            "Wireframes, framework CSS, infrastructure.",
+          ],
+          en: [
+            "Git, design patterns, project management and meeting facilitation.",
+            "API development, web/mobile/desktop applications.",
+            "Wireframes, CSS framework, infrastructure.",
+          ],
+        },
+        apprenticeshipNote: {
+          fr: "Dernière année 2023-2024 en alternance (GCA) en tant que développeur back-end sur GTR.",
+          en: "Final year 2023-2024 as an apprenticeship (GCA) as a back-end developer on GTR.",
+        },
+      },
+      {
+        key: "master-cmsi",
+        yearTitle: {
+          fr: "2024-Aujourd'hui",
+          en: "2024-Present",
+        },
+        title: {
+          fr: "Master CMSI - IAE Montpellier (en cours)",
+          en: "Master CMSI - IAE Montpellier (ongoing)",
+        },
+        status: {
+          fr: "En cours",
+          en: "Ongoing",
+        },
+        context: {
+          fr: "Bascule vers le management des SI : cadrage, pilotage, transformation.",
+          en: "Shift to IS management: framing, steering, transformation.",
+        },
+        learnedTitle: {
+          fr: "Ce que je développe",
+          en: "What I'm developing",
+        },
+        learnedBullets: {
+          fr: [
+            "Vision stratégique des SI et alignement avec les enjeux business.",
+            "Méthodes de pilotage : gouvernance, conduite du changement, gestion de projet.",
+            "Traduction des besoins métier en solutions SI déployables.",
+          ],
+          en: [
+            "Strategic view of information systems aligned with business goals.",
+            "Steering methods: governance, change management, project management.",
+            "Turning business needs into deployable IS solutions.",
+          ],
+        },
+        themesTitle: {
+          fr: "Axes typiques",
+          en: "Typical focus areas",
+        },
+        themesBullets: {
+          fr: [
+            "Consulting IT et gouvernance des SI.",
+            "Transformation digitale, management des organisations.",
+            "Gestion de projet numérique et dimensions humaines/techniques.",
+          ],
+          en: [
+            "IT consulting and IS governance.",
+            "Digital transformation and organizational management.",
+            "Digital project management across human and technical dimensions.",
+          ],
+        },
+      },
+    ],
+    futureTitle: {
+      fr: "Ambitions",
+      en: "Ambitions",
+    },
+    futureParagraphs: {
+      fr: [
+        "Mon objectif est de devenir Chef de Projet IA / AI Product Owner : piloter des projets où la donnée et les modèles servent un besoin métier concret.",
+        "Je veux rester ce profil hybride : assez technique pour challenger, assez structurant pour faire livrer, et assez orienté valeur pour transformer.",
+      ],
+      en: [
+        "My goal is to become an AI Project Manager / AI Product Owner: leading projects where data and models solve concrete business needs.",
+        "I want to remain a hybrid profile: technical enough to challenge, structured enough to deliver, and value-driven enough to transform.",
+      ],
+    },
   },
   about: {
     aboutPageTitle: {
