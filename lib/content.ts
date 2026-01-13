@@ -131,15 +131,27 @@ export type Content = {
   contact: {
     title: LocalizedString;
     subtitle: LocalizedString;
-    links: {
-      linkedIn: string;
-      github: string;
+    availabilityNote: LocalizedString;
+    fields: {
       email: string;
+      phone: string;
+      linkedin: string;
+      github: string;
     };
-    linkLabels: {
-      linkedIn: LocalizedString;
-      github: LocalizedString;
-      email: LocalizedString;
+    labels: {
+      emailLabel: LocalizedString;
+      phoneLabel: LocalizedString;
+      linkedinLabel: LocalizedString;
+      githubLabel: LocalizedString;
+      detailsTitle: LocalizedString;
+      ctaEmail: LocalizedString;
+      ctaPhone: LocalizedString;
+      ctaLinkedIn: LocalizedString;
+      ctaGitHub: LocalizedString;
+      ctaCopy: LocalizedString;
+      copied: LocalizedString;
+      back: LocalizedString;
+      ctaTalk: LocalizedString;
     };
   };
 };
@@ -1027,26 +1039,71 @@ export const content = {
       en: "Contact",
     },
     subtitle: {
-      fr: "Ouvert aux opportunités d'alternance et aux échanges autour de projets data/produit.",
-      en: "Open to apprenticeship opportunities and discussions around data and product projects.",
+      fr: "Je recherche une alternance et je suis pr?t ? m'investir pleinement. Ouvert aux ?changes et opportunit?s.",
+      en: "I'm looking for an apprenticeship and ready to fully commit. Open to discussions and opportunities.",
     },
-    links: {
-      linkedIn: "",
-      github: "",
-      email: "",
+    availabilityNote: {
+      fr: "N'h?sitez pas ? me contacter : je r?ponds rapidement.",
+      en: "Feel free to reach out ? I respond quickly.",
     },
-    linkLabels: {
-      linkedIn: {
+    fields: {
+      email: "albusguilhem@gmail.com",
+      phone: "0695636530",
+      linkedin: "https://www.linkedin.com/in/guilhem-albus-00601639a/",
+      github: "https://github.com/GuilhemAl",
+    },
+    labels: {
+      emailLabel: {
+        fr: "Email",
+        en: "Email",
+      },
+      phoneLabel: {
+        fr: "T?l?phone",
+        en: "Phone",
+      },
+      linkedinLabel: {
         fr: "LinkedIn",
         en: "LinkedIn",
       },
-      github: {
+      githubLabel: {
         fr: "GitHub",
         en: "GitHub",
       },
-      email: {
-        fr: "Email",
-        en: "Email",
+      detailsTitle: {
+        fr: "Coordonn?es",
+        en: "Contact details",
+      },
+      ctaEmail: {
+        fr: "M'?crire",
+        en: "Email me",
+      },
+      ctaPhone: {
+        fr: "Appeler",
+        en: "Call",
+      },
+      ctaLinkedIn: {
+        fr: "Me contacter sur LinkedIn",
+        en: "Message me on LinkedIn",
+      },
+      ctaGitHub: {
+        fr: "Voir GitHub",
+        en: "View GitHub",
+      },
+      ctaCopy: {
+        fr: "Copier",
+        en: "Copy",
+      },
+      copied: {
+        fr: "Copi?",
+        en: "Copied",
+      },
+      back: {
+        fr: "Retour",
+        en: "Back",
+      },
+      ctaTalk: {
+        fr: "Discutons",
+        en: "Let's talk",
       },
     },
   },

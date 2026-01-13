@@ -14,23 +14,8 @@ export default function Home() {
   const list = (value: LocalizedList) => (lang === "fr" ? value.fr : value.en);
   const deepDiveLabel = l(content.labels.deepDive);
   const futureTeaser = list(content.about.aboutFutureParagraphs)[0];
-  const contactLinks = [
-    {
-      id: "linkedIn",
-      label: l(content.contact.linkLabels.linkedIn),
-      href: content.contact.links.linkedIn,
-    },
-    {
-      id: "github",
-      label: l(content.contact.linkLabels.github),
-      href: content.contact.links.github,
-    },
-    {
-      id: "email",
-      label: l(content.contact.linkLabels.email),
-      href: content.contact.links.email,
-    },
-  ];
+  const contactEmail = content.contact.fields.email;
+  const contactLinkedIn = content.contact.fields.linkedin;
 
   return (
     <main className="bg-slate-50">
@@ -285,32 +270,25 @@ export default function Home() {
           <p className="mt-3 max-w-2xl text-slate-600">
             {l(content.contact.subtitle)}
           </p>
+          <p className="mt-2 max-w-2xl text-slate-600">
+            {l(content.contact.availabilityNote)}
+          </p>
           <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-700">
-            {contactLinks.map((link) =>
-              link.href ? (
-                <a
-                  key={link.id}
-                  href={link.href}
-                  className="rounded-full border border-slate-300/80 bg-white px-4 py-2 transition hover:bg-slate-100"
-                >
-                  {link.label}
-                </a>
-              ) : (
-                <span
-                  key={link.id}
-                  className="rounded-full border border-dashed border-slate-300/80 bg-white/70 px-4 py-2 text-slate-500"
-                >
-                  {link.label}
-                </span>
-              ),
-            )}
+            <a
+              href={`mailto:${contactEmail}`}
+              className="rounded-full border border-slate-300/80 bg-slate-900 px-4 py-2 text-white transition hover:bg-slate-800"
+            >
+              {l(content.contact.labels.ctaEmail)}
+            </a>
+            <a
+              href={contactLinkedIn}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-slate-300/80 bg-white px-4 py-2 transition hover:bg-slate-100"
+            >
+              {l(content.contact.labels.ctaLinkedIn)}
+            </a>
           </div>
-          <Link
-            href="/contact"
-            className="mt-6 inline-flex items-center rounded-full border border-slate-300/80 bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
-          >
-            {deepDiveLabel}
-          </Link>
         </section>
       </div>
     </main>
