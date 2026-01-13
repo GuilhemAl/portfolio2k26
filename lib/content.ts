@@ -26,6 +26,7 @@ export type Content = {
     seeSkills: LocalizedString;
     comingSoon: LocalizedString;
     timeline: LocalizedString;
+    goHome: LocalizedString;
   };
   pageTitles: {
     experience: LocalizedString;
@@ -168,6 +169,10 @@ export const content = {
     timeline: {
       fr: "Timeline",
       en: "Timeline",
+    },
+    goHome: {
+      fr: "Retour à l’accueil",
+      en: "Go to home",
     },
   },
   pageTitles: {

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { content, type LocalizedString } from "@/lib/content";
@@ -19,9 +20,21 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur">
       <nav className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-6 py-4">
-        <span className="text-xs font-semibold uppercase tracking-[0.4em] text-slate-500">
-          {l(content.navigation.brand)}
-        </span>
+        <Link
+          href="/#home"
+          aria-label={l(content.labels.goHome)}
+          className="flex items-center"
+        >
+          <Image
+            src="/monogram.png"
+            alt="Monogram Guilhem Albus"
+            width={120}
+            height={32}
+            priority
+            className="h-8 w-auto drop-shadow-sm"
+          />
+          <span className="sr-only">{l(content.navigation.brand)}</span>
+        </Link>
         <div className="flex flex-wrap items-center gap-3 text-sm text-slate-700">
           {navItems.map((item) => (
             <Link
