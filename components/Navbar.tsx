@@ -28,10 +28,10 @@ export function Navbar() {
           <Image
             src="/monogram.png"
             alt="Monogram Guilhem Albus"
-            width={120}
-            height={32}
+            width={260}
+            height={40}
             priority
-            className="h-8 w-auto drop-shadow-sm"
+            className="h-8 w-auto scale-[1.9] origin-left drop-shadow-sm"
           />
           <span className="sr-only">{l(content.navigation.brand)}</span>
         </Link>
