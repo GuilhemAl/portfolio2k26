@@ -22,14 +22,14 @@ const I18nContext = createContext<I18nContextValue | undefined>(undefined);
 const storageKey = "lang";
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLang] = useState<Lang>("fr");
-
-  useEffect(() => {
-    const stored = window.localStorage.getItem(storageKey);
-    if (stored === "fr" || stored === "en") {
-      setLang(stored);
+  const [lang, setLang] = useState<Lang>(() => {
+    if (typeof window === "undefined") {
+      return "fr";
     }
-  }, []);
+
+    const stored = window.localStorage.getItem(storageKey);
+    return stored === "fr" || stored === "en" ? stored : "fr";
+  });
 
   useEffect(() => {
     window.localStorage.setItem(storageKey, lang);
