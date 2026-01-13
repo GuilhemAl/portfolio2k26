@@ -1,9 +1,13 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
+import { ButtonLink } from "@/components/ui/ButtonLink";
+import { Card } from "@/components/ui/Card";
 import { content, type LocalizedString } from "@/lib/content";
 import { useI18n } from "@/lib/i18n";
+
+const copyButtonClass =
+  "inline-flex items-center rounded-full border border-[var(--border)] bg-[var(--text)] px-4 py-2 text-xs font-semibold text-white transition hover:bg-[#111a2a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]";
 
 export default function ContactPage() {
   const { t } = useI18n();
@@ -55,6 +59,7 @@ export default function ContactPage() {
       helper: null,
       linkLabel: l(content.contact.labels.primaryCta),
       linkHref: linkedin,
+      external: true,
     },
     {
       key: "github",
@@ -64,57 +69,52 @@ export default function ContactPage() {
       helper: null,
       linkLabel: l(content.contact.labels.ctaGitHub),
       linkHref: github,
+      external: true,
     },
   ];
 
   return (
-    <main className="min-h-screen bg-slate-50">
-      <div className="mx-auto max-w-5xl px-6 py-16">
-        <Link
-          href="/"
-          className="text-sm font-semibold text-slate-600 transition hover:text-slate-900"
-        >
+    <main className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
+      <div className="container-page section-pad">
+        <ButtonLink href="/" variant="secondary">
           {l(content.contact.labels.back)}
-        </Link>
+        </ButtonLink>
 
         <header className="mt-6">
-          <h1 className="text-4xl font-semibold text-slate-900">
+          <h1 className="text-4xl font-semibold tracking-[-0.02em] text-[var(--text)]">
             {l(content.contact.title)}
           </h1>
-          <p className="mt-4 max-w-2xl text-slate-600">
+          <p className="mt-4 max-w-2xl text-[var(--muted)]">
             {l(content.contact.subtitle)}
           </p>
-          <p className="mt-2 max-w-2xl text-sm text-slate-600">
+          <p className="mt-2 max-w-2xl text-sm text-[var(--muted)]">
             {l(content.contact.availabilityNote)}
           </p>
         </header>
 
         <div className="mt-8 flex flex-wrap gap-3">
-          <a
-            href={linkedin}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center rounded-full border border-slate-300/80 bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
-          >
+          <ButtonLink href={linkedin} variant="primary" external>
             {l(content.contact.labels.primaryCta)}
-          </a>
+          </ButtonLink>
         </div>
 
-        <section className="mt-6 rounded-2xl border border-slate-200/80 bg-white/80 p-6 shadow-sm">
-          <h2 className="text-lg font-semibold text-slate-900">
+        <Card className="mt-6">
+          <h2 className="text-lg font-semibold text-[var(--text)]">
             {l(content.contact.labels.detailsTitle)}
           </h2>
-          <div className="mt-4 divide-y divide-slate-200/80">
+          <div className="mt-4 divide-y divide-[var(--border)]">
             {rows.map((row) => (
               <div key={row.key} className="py-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
                   {row.label}
                 </p>
-                <p className="mt-1 text-sm text-slate-700 break-all select-text">
+                <p className="mt-1 text-sm text-[var(--text)] break-all select-text">
                   {row.value}
                 </p>
                 {row.helper ? (
-                  <p className="mt-1 text-xs text-slate-500">{row.helper}</p>
+                  <p className="mt-1 text-xs text-[var(--muted)]">
+                    {row.helper}
+                  </p>
                 ) : null}
                 <div className="mt-3 flex flex-wrap items-center gap-3 text-sm">
                   {row.copyField ? (
@@ -122,7 +122,7 @@ export default function ContactPage() {
                       type="button"
                       onClick={() => handleCopy(row.copyField, row.value)}
                       aria-label={`${l(content.contact.labels.ctaCopy)} ${row.label}`}
-                      className="rounded-full border border-slate-300/80 bg-slate-900 px-4 py-2 text-white transition hover:bg-slate-800"
+                      className={copyButtonClass}
                     >
                       {copiedField === row.copyField
                         ? l(content.contact.labels.copied)
@@ -131,17 +131,9 @@ export default function ContactPage() {
                   ) : null}
                   <a
                     href={row.linkHref}
-                    target={
-                      row.key === "linkedin" || row.key === "github"
-                        ? "_blank"
-                        : undefined
-                    }
-                    rel={
-                      row.key === "linkedin" || row.key === "github"
-                        ? "noreferrer"
-                        : undefined
-                    }
-                    className="text-xs font-semibold text-slate-600 transition hover:text-slate-900"
+                    target={row.external ? "_blank" : undefined}
+                    rel={row.external ? "noreferrer" : undefined}
+                    className="text-xs font-semibold text-[var(--muted)] transition hover:text-[var(--text)]"
                   >
                     {row.linkLabel}
                   </a>
@@ -149,7 +141,7 @@ export default function ContactPage() {
               </div>
             ))}
           </div>
-        </section>
+        </Card>
       </div>
     </main>
   );

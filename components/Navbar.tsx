@@ -19,8 +19,8 @@ export function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur">
-      <nav className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-6 py-4">
+    <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--surface)] backdrop-blur-[10px]">
+      <nav className="container-page flex flex-wrap items-center justify-between gap-4 py-4">
         <Link
           href="/#home"
           aria-label={l(content.labels.goHome)}
@@ -32,18 +32,19 @@ export function Navbar() {
             width={260}
             height={40}
             priority
-            className="h-8 w-auto scale-[1.9] origin-left drop-shadow-sm"
+            className="h-8 w-auto scale-[1.9] origin-left drop-shadow-[0_6px_18px_rgba(11,18,32,0.12)]"
           />
           <span className="sr-only">{l(content.navigation.brand)}</span>
         </Link>
-        <div className="flex flex-wrap items-center gap-3 text-sm text-slate-700">
+        <div className="flex flex-wrap items-center gap-3 text-sm text-[var(--muted)]">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-full px-3 py-1 transition hover:bg-slate-100"
+              className="group relative rounded-full px-3 py-1 transition hover:text-[var(--text)]"
             >
               {item.label}
+              <span className="absolute inset-x-3 -bottom-1 h-[2px] origin-left scale-x-0 rounded-full bg-[var(--accent)] transition-transform duration-200 group-hover:scale-x-100" />
             </Link>
           ))}
           <LanguageToggle />
