@@ -183,41 +183,24 @@ export default function Home() {
           </Link>
         </section>
 
-        <section id="approach" className={sectionClass}>
-          <h2 className="text-2xl font-semibold text-slate-900">
-            {l(content.approach.title)}
-          </h2>
-          <ul className="mt-4 space-y-2 text-sm text-slate-600">
-            {list(content.approach.bullets).map((item) => (
-              <li key={item}>- {item}</li>
-            ))}
-          </ul>
-          <Link
-            href="/about"
-            className="mt-6 inline-flex items-center rounded-full border border-slate-300/80 bg-slate-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-slate-800"
-          >
-            {deepDiveLabel}
-          </Link>
-        </section>
-
         <section id="skills" className={sectionClass}>
           <h2 className="text-2xl font-semibold text-slate-900">
-            {l(content.navigation.items.skills)}
+            {l(content.skills.title)}
           </h2>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {content.skills.map((skill) => (
+            {content.skills.buckets.map((bucket) => (
               <article
-                key={skill.title.en}
+                key={bucket.key}
                 className="rounded-2xl border border-slate-200/80 bg-white/80 p-5"
               >
                 <h3 className="text-lg font-semibold text-slate-900">
-                  {l(skill.title)}
+                  {l(bucket.title)}
                 </h3>
                 <p className="mt-3 text-sm text-slate-600">
-                  {list(skill.bullets)[0]}
+                  {l(bucket.summary)}
                 </p>
                 <div className="mt-4 flex flex-wrap gap-2 text-xs text-slate-600">
-                  {skill.tags.map((tag) => (
+                  {bucket.tags.map((tag) => (
                     <span
                       key={tag}
                       className="rounded-full border border-slate-200/80 bg-slate-50 px-3 py-1"

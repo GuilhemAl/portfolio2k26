@@ -24,23 +24,26 @@ export default function SkillsPage() {
 
         <header className="mt-6">
           <h1 className="text-4xl font-semibold text-slate-900">
-            {l(content.pageTitles.skills)}
+            {l(content.skills.title)}
           </h1>
+          <p className="mt-3 max-w-2xl text-slate-600">
+            {l(content.skills.intro)}
+          </p>
         </header>
 
         <div className="mt-8 grid gap-6 md:grid-cols-2">
-          {content.skills.map((skill) => (
-            <section key={skill.title.en} className={cardClass}>
+          {content.skills.buckets.map((bucket) => (
+            <section key={bucket.key} className={cardClass}>
               <h2 className="text-lg font-semibold text-slate-900">
-                {l(skill.title)}
+                {l(bucket.title)}
               </h2>
               <ul className="mt-4 space-y-2 text-sm text-slate-600">
-                {list(skill.bullets).map((bullet) => (
+                {list(bucket.bullets).map((bullet) => (
                   <li key={bullet}>- {bullet}</li>
                 ))}
               </ul>
               <div className="mt-4 flex flex-wrap gap-2 text-xs text-slate-600">
-                {skill.tags.map((tag) => (
+                {bucket.tags.map((tag) => (
                   <span
                     key={tag}
                     className="rounded-full border border-slate-200/80 bg-slate-50 px-3 py-1"

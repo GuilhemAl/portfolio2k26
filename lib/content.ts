@@ -33,10 +33,6 @@ export type Content = {
     about: LocalizedString;
     contact: LocalizedString;
   };
-  approach: {
-    title: LocalizedString;
-    bullets: LocalizedList;
-  };
   navigation: {
     brand: LocalizedString;
     items: {
@@ -46,6 +42,17 @@ export type Content = {
       about: LocalizedString;
       contact: LocalizedString;
     };
+  };
+  skills: {
+    title: LocalizedString;
+    intro: LocalizedString;
+    buckets: Array<{
+      key: string;
+      title: LocalizedString;
+      summary: LocalizedString;
+      bullets: LocalizedList;
+      tags: string[];
+    }>;
   };
   experience: {
     company: LocalizedString;
@@ -84,11 +91,6 @@ export type Content = {
       bullets: LocalizedList;
     }>;
   };
-  skills: Array<{
-    title: LocalizedString;
-    bullets: LocalizedList;
-    tags: string[];
-  }>;
   about: {
     paragraph1: LocalizedString;
     paragraph2: LocalizedString;
@@ -183,26 +185,6 @@ export const content = {
     contact: {
       fr: "Contact",
       en: "Contact",
-    },
-  },
-  approach: {
-    title: {
-      fr: "Ma facon de travailler",
-      en: "How I work",
-    },
-    bullets: {
-      fr: [
-        "Je transforme un besoin metier en livrable exploitable (specs, stories, criteres).",
-        "Je privilegie la clarte : perimetre, regles, responsabilites.",
-        "Je cherche l'exploitabilite : monitoring/reporting et reduction du bruit.",
-        "Je securise la delivery avec une approche Agile et iterative.",
-      ],
-      en: [
-        "I turn business needs into actionable deliverables (specs, stories, criteria).",
-        "I prioritize clarity: scope, rules, ownership.",
-        "I focus on operability: monitoring/reporting and noise reduction.",
-        "I enable delivery through an iterative Agile approach.",
-      ],
     },
   },
   navigation: {
@@ -512,84 +494,172 @@ export const content = {
       },
     ],
   },
-  skills: [
-    {
-      title: {
-        fr: "Back-end",
-        en: "Back-end",
-      },
-      bullets: {
-        fr: [
-          "Services Quarkus/Java orientes flux logistiques.",
-          "Jobs d'export XML (ETA/GPS/Statut).",
-          "Debug production : logs, donnees, diagnostics.",
-        ],
-        en: [
-          "Quarkus/Java services for logistics flows.",
-          "XML export jobs (ETA/GPS/Status).",
-          "Production debugging: logs, data, diagnostics.",
-        ],
-      },
-      tags: ["Quarkus", "Java", "XML", "Debug"],
+  skills: {
+    title: {
+      fr: "Competences",
+      en: "Skills",
     },
-    {
-      title: {
-        fr: "Agile & Scrum",
-        en: "Agile & Scrum",
-      },
-      bullets: {
-        fr: [
-          "Scrum Master : rituels, facilitation.",
-          "Gestion du backlog et priorisation.",
-          "Amelioration continue et feedback.",
-        ],
-        en: [
-          "Scrum Master: ceremonies and facilitation.",
-          "Backlog management and prioritization.",
-          "Continuous improvement and feedback.",
-        ],
-      },
-      tags: ["Scrum", "Scrum Master", "Agile"],
+    intro: {
+      fr: "Un mix de competences techniques et humaines construit en delivery produit et data.",
+      en: "A mix of technical and people skills built through product and data delivery.",
     },
-    {
-      title: {
-        fr: "Outillage",
-        en: "Tooling",
+    buckets: [
+      {
+        key: "backend",
+        title: {
+          fr: "Back-end & APIs",
+          en: "Back-end & APIs",
+        },
+        summary: {
+          fr: "Services Quarkus/Java, APIs et integrations SI avec exports XML et diagnostic prod.",
+          en: "Quarkus/Java services, APIs and SI integrations with XML exports and production diagnosis.",
+        },
+        bullets: {
+          fr: [
+            "Services Quarkus/Java orientes flux logistiques et donnees.",
+            "Conception et integration d'APIs pour besoins metier.",
+            "Exports XML (ETA/GPS/Statuts) pour diffusion via EAI.",
+            "Diagnostic production : logs, donnees, investigations.",
+          ],
+          en: [
+            "Quarkus/Java services focused on logistics flows and data.",
+            "API design and integrations for business needs.",
+            "XML exports (ETA/GPS/Status) distributed via EAI.",
+            "Production diagnosis through logs, data and investigations.",
+          ],
+        },
+        tags: ["Quarkus", "Java", "API", "XML", "Debug"],
       },
-      bullets: {
-        fr: [
-          "Azure DevOps Boards pour pilotage.",
-          "Docker pour services et environnements.",
-          "Suivi de delivery dans Azure DevOps.",
-        ],
-        en: [
-          "Azure DevOps Boards for delivery tracking.",
-          "Docker for services and environments.",
-          "Delivery monitoring in Azure DevOps.",
-        ],
+      {
+        key: "data-sql",
+        title: {
+          fr: "Data & SQL",
+          en: "Data & SQL",
+        },
+        summary: {
+          fr: "Extraction et analyse SQL pour repondre aux besoins metier (Oracle/Postgres).",
+          en: "SQL extraction and analysis for business needs (Oracle/Postgres).",
+        },
+        bullets: {
+          fr: [
+            "Requetes SQL pour extraction, controle et analyse.",
+            "Traduction des besoins metier en requetes exploitables.",
+            "Travail sur bases Oracle et Postgres.",
+          ],
+          en: [
+            "SQL queries for extraction, checks and analysis.",
+            "Translate business needs into usable queries.",
+            "Work across Oracle and Postgres databases.",
+          ],
+        },
+        tags: ["SQL", "Postgres", "Oracle"],
       },
-      tags: ["Azure DevOps", "Docker", "Boards"],
-    },
-    {
-      title: {
-        fr: "Reporting & Data",
-        en: "Reporting & Data",
+      {
+        key: "agile-delivery",
+        title: {
+          fr: "Delivery Agile",
+          en: "Agile Delivery",
+        },
+        summary: {
+          fr: "Scrum Master, rituels et backlog pour une delivery agile lisible.",
+          en: "Scrum Mastering, rituals and backlog for clear agile delivery.",
+        },
+        bullets: {
+          fr: [
+            "Animation des rituels Scrum et facilitation d'equipe.",
+            "Structuration du backlog et priorisation.",
+            "Amelioration continue via feedback et ajustements.",
+            "Suivi de delivery pour donner de la visibilite.",
+          ],
+          en: [
+            "Facilitate Scrum ceremonies and team routines.",
+            "Backlog structuring and prioritization.",
+            "Continuous improvement through feedback and iteration.",
+            "Delivery tracking to keep stakeholders aligned.",
+          ],
+        },
+        tags: ["Scrum", "Scrum Master", "Agile"],
       },
-      bullets: {
-        fr: [
-          "Report Builder pour reporting/monitoring.",
-          "SQL pour extraction et analyse.",
-          "Bases Oracle/Postgres.",
-        ],
-        en: [
-          "Report Builder for reporting/monitoring.",
-          "SQL for extraction and analysis.",
-          "Oracle/Postgres databases.",
-        ],
+      {
+        key: "tooling-delivery",
+        title: {
+          fr: "Outils & Delivery",
+          en: "Tooling & Delivery",
+        },
+        summary: {
+          fr: "Azure DevOps Boards pour pilotage, collaboration et suivi delivery, avec Docker.",
+          en: "Azure DevOps Boards for steering, collaboration and delivery tracking, with Docker.",
+        },
+        bullets: {
+          fr: [
+            "Pilotage du delivery via Azure DevOps Boards.",
+            "Suivi, priorisation et coordination equipe/metier.",
+            "Docker pour services et environnements de travail.",
+            "Visibilite des avancements pour l'equipe et les parties prenantes.",
+          ],
+          en: [
+            "Delivery steering in Azure DevOps Boards.",
+            "Tracking, prioritization and team/business coordination.",
+            "Docker for services and working environments.",
+            "Progress visibility for teams and stakeholders.",
+          ],
+        },
+        tags: ["Azure DevOps", "Boards", "Docker"],
       },
-      tags: ["Report Builder", "SQL", "Postgres", "Oracle"],
-    },
-  ],
+      {
+        key: "reporting-monitoring",
+        title: {
+          fr: "Reporting & Monitoring",
+          en: "Reporting & Monitoring",
+        },
+        summary: {
+          fr: "Report Builder pour reporting et monitoring projet.",
+          en: "Report Builder for project reporting and monitoring.",
+        },
+        bullets: {
+          fr: [
+            "Report Builder pour visualiser le suivi et les tendances.",
+            "Construction de rapports utiles a la decision.",
+            "Monitoring de flux et donnees pour garder la qualite.",
+          ],
+          en: [
+            "Report Builder to visualize tracking and trends.",
+            "Build reports that help decision making.",
+            "Monitor flows and data to keep quality in check.",
+          ],
+        },
+        tags: ["Report Builder", "Reporting"],
+      },
+      {
+        key: "soft-skills",
+        title: {
+          fr: "Soft skills",
+          en: "Soft skills",
+        },
+        summary: {
+          fr: "Facilitation, mediation et communication claire pour faire avancer la delivery.",
+          en: "Facilitation, mediation and clear communication to move delivery forward.",
+        },
+        bullets: {
+          fr: [
+            "Facilitation et animation d'equipe.",
+            "Gestion de profils conflictuels et mediation.",
+            "Communication claire entre tech et non-tech.",
+            "Organisation, priorisation et rigueur.",
+            "Leadership de delivery sans autorite hierarchique.",
+          ],
+          en: [
+            "Team facilitation and session leadership.",
+            "Conflict management and mediation with difficult profiles.",
+            "Clear communication between tech and non-tech.",
+            "Organization, prioritization and rigor.",
+            "Delivery leadership without formal authority.",
+          ],
+        },
+        tags: ["Facilitation", "Communication", "Conflict management", "Leadership"],
+      },
+    ],
+  },
   about: {
     paragraph1: {
       fr: "Bachelor Dev Web MDS 2021-2024 en alternance sur GTR, un socle technique solide.",
