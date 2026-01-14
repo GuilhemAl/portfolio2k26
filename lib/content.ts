@@ -932,7 +932,7 @@ export const content = {
       en: "About",
     },
     aboutIntro: {
-      fr: "Depuis toujours attire par l'informatique, j'ai construit un parcours entre technique et pilotage produit. Mon passage par l'IUT Informatique m'a apporte une base methodologique solide et a clarifie mes objectifs.",
+      fr: "Depuis toujours attiré par l'informatique, j'ai construit un parcours entre technique et pilotage produit. Mon passage par l'IUT Informatique m'a apporté une base méthodologique solide et a clarifié mes objectifs.",
       en: "Drawn to computing early on, I built a path between hands-on engineering and product delivery. My time in a Computer Science IUT gave me a solid methodological foundation and clarified my goals.",
     },
     aboutTimeline: [
@@ -943,8 +943,8 @@ export const content = {
         },
         paragraphs: {
           fr: [
-            "Passionne d'informatique depuis l'enfance, initie par mon grand-pere, j'integre un IUT Informatique.",
-            "Cette annee m'a apporte une premiere exposition aux fondamentaux, a la rigueur universitaire et a une direction plus claire.",
+            "Passionné d'informatique depuis l'enfance, initié par mon grand-père, j'intègre un IUT Informatique.",
+            "Cette année m'a apporté une première exposition aux fondamentaux, à la rigueur universitaire et à une direction plus claire.",
           ],
           en: [
             "Passionate about computing since childhood, sparked by my grandfather, I joined an IUT in Computer Science.",
