@@ -932,8 +932,8 @@ export const content = {
       en: "About",
     },
     aboutIntro: {
-      fr: "Depuis toujours attiré par l'informatique, j'ai construit un parcours entre technique et pilotage produit. Après un échec en septembre 2020 - juillet 2021, j'ai rebâti un socle solide et pris des responsabilités sur GTR.",
-      en: "Drawn to computing early on, I built a path between hands-on engineering and product delivery. After a setback in September 2020 - July 2021, I rebuilt a strong foundation and took on responsibilities on GTR.",
+      fr: "Depuis toujours attire par l'informatique, j'ai construit un parcours entre technique et pilotage produit. Mon passage par l'IUT Informatique m'a apporte une base methodologique solide et a clarifie mes objectifs.",
+      en: "Drawn to computing early on, I built a path between hands-on engineering and product delivery. My time in a Computer Science IUT gave me a solid methodological foundation and clarified my goals.",
     },
     aboutTimeline: [
       {
@@ -943,12 +943,12 @@ export const content = {
         },
         paragraphs: {
           fr: [
-            "Passionné d'informatique depuis l'enfance, initié par mon grand-père, j'intègre un IUT Informatique.",
-            "L'année Covid bouleverse le parcours : une première année ratée, une remise en question, puis la décision de repartir sur des bases solides.",
+            "Passionne d'informatique depuis l'enfance, initie par mon grand-pere, j'integre un IUT Informatique.",
+            "Cette annee m'a apporte une premiere exposition aux fondamentaux, a la rigueur universitaire et a une direction plus claire.",
           ],
           en: [
             "Passionate about computing since childhood, sparked by my grandfather, I joined an IUT in Computer Science.",
-            "The Covid year disrupted everything: a failed first year, a period of doubt, and the decision to rebuild on stronger foundations.",
+            "That year gave me an initial grounding in fundamentals, academic rigor, and a clearer direction.",
           ],
         },
       },
