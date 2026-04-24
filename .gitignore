@@ -24,6 +24,8 @@
 .DS_Store
 *.pem
 ChatGPT Image *.png
+.claude/
+Porfolio/
 
 # debug
 npm-debug.log*
