@@ -1,160 +1,234 @@
 "use client";
 
 import Link from "next/link";
-import { Badge } from "@/components/ui/Badge";
-import { ButtonLink } from "@/components/ui/ButtonLink";
-import { Card } from "@/components/ui/Card";
-import { Chip } from "@/components/ui/Chip";
 import { content, type LocalizedList, type LocalizedString } from "@/lib/content";
 import { useI18n } from "@/lib/i18n";
 
+const onCardMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const r = e.currentTarget.getBoundingClientRect();
+  e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+  e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+};
+
 export default function ExperiencePage() {
   const { lang, t } = useI18n();
-  const l = (value: LocalizedString) => t(value.fr, value.en);
-  const list = (value: LocalizedList) => (lang === "fr" ? value.fr : value.en);
+  const l = (v: LocalizedString) => t(v.fr, v.en);
+  const list = (v: LocalizedList) => (lang === "fr" ? v.fr : v.en);
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
-      <div className="container-page section-pad">
-        <nav className="text-sm font-semibold text-[var(--muted)]">
-          <Link href="/" className="transition hover:text-[var(--text)]">
-            {l(content.navigation.items.home)}
+    <main>
+      <section className="page-hero">
+        <div className="container">
+          <Link href="/" className="back-link">
+            <span>←</span> {l(content.labels.back)}
           </Link>
-          <span className="px-2 text-[var(--muted)]">/</span>
-          <span className="text-[var(--text)]">
-            {l(content.pageTitles.experience)}
-          </span>
-        </nav>
-
-        <header className="mt-6">
-          <div className="flex flex-wrap items-center gap-3">
-            <h1 className="text-3xl font-semibold tracking-[-0.02em] text-[var(--text)] sm:text-4xl">
-              {l(content.pageTitles.experience)}
-            </h1>
-            <Badge variant="accent">{l(content.experience.apprenticeshipLabel)}</Badge>
+          <div className="eyebrow">
+            01 / {l(content.experience.apprenticeshipLabel)} · {l(content.experience.period)}
           </div>
-          <p className="mt-3 max-w-2xl text-sm text-[var(--muted)]">
-            {l(content.experience.apprenticeshipNote)}
-          </p>
-        </header>
-
-        <Card className="mt-8">
-          <h2 className="text-lg font-semibold text-[var(--text)]">
-            {l(content.experience.company)}
-          </h2>
-          <p className="mt-2 text-sm text-[var(--muted)]">
-            {l(content.experience.orgUnit)} / {l(content.experience.product)} /{" "}
-            {l(content.experience.period)}
-          </p>
-        </Card>
-
-        <Card className="mt-6">
-          <p className="text-sm font-semibold text-[var(--text)]">
-            {l(content.experience.productLabel)}
-          </p>
-          <p className="mt-2 max-w-2xl text-sm text-[var(--muted)]">
-            {l(content.experience.productOneLiner)}
-          </p>
-          <h2 className="mt-4 text-sm font-semibold text-[var(--text)]">
-            {l(content.experience.productCapabilitiesTitle)}
-          </h2>
-          <ul className="mt-3 space-y-2 text-sm text-[var(--muted)]">
-            {list(content.experience.productCapabilities).map((item) => (
-              <li key={item}>- {item}</li>
-            ))}
-          </ul>
-        </Card>
-
-        <Card className="mt-6">
-          <h2 className="text-lg font-semibold text-[var(--text)]">
-            {l(content.experience.environmentTitle)}
-          </h2>
-          <ul className="mt-3 space-y-2 text-sm text-[var(--muted)]">
-            {list(content.experience.environmentBullets).map((item) => (
-              <li key={item}>- {item}</li>
-            ))}
-          </ul>
-        </Card>
-
-        <div className="mt-6 grid gap-6 md:grid-cols-2">
-          {content.experience.roles.map((role) => (
-            <Card key={role.id}>
-              <div className="flex items-baseline justify-between gap-3">
-                <h2 className="text-lg font-semibold text-[var(--text)]">
-                  {l(role.title)}
-                </h2>
-                <span className="text-xs text-[var(--muted)]">
-                  {l(role.period)}
-                </span>
-              </div>
-              <h3 className="mt-4 text-sm font-semibold text-[var(--text)]">
-                {l(role.focusTitle)}
-              </h3>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {list(role.focusAreas).map((item) => (
-                  <Chip key={item}>{item}</Chip>
-                ))}
-              </div>
-              <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
-                {list(role.bullets).map((bullet) => (
-                  <li key={bullet}>- {bullet}</li>
-                ))}
-              </ul>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {role.stack.map((tag) => (
-                  <Chip key={tag}>{tag}</Chip>
-                ))}
-              </div>
-            </Card>
-          ))}
+          <h1>{l(content.pageTitles.experience)}</h1>
+          <p className="lede">{l(content.experience.apprenticeshipNote)}</p>
         </div>
+      </section>
 
-        <Card className="mt-6">
-          <h2 className="text-lg font-semibold text-[var(--text)]">
-            {l(content.experience.contributionsTitle)}
-          </h2>
-          <p className="mt-2 text-sm text-[var(--muted)]">
-            {l(content.experience.contributionsIntro)}
-          </p>
-          <div className="mt-4 grid gap-4 md:grid-cols-2">
-            {content.experience.contributions.map((contribution) => (
-              <Card key={contribution.title.en}>
-                <h3 className="text-base font-semibold text-[var(--text)]">
-                  {l(contribution.title)}
-                </h3>
-                <p className="mt-2 text-sm text-[var(--muted)]">
-                  {l(contribution.context)}
-                </p>
-                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.25em] text-[var(--muted)]">
-                  {l(contribution.myRole)}
-                </p>
-                <ul className="mt-3 space-y-2 text-sm text-[var(--muted)]">
-                  {list(contribution.approachBullets).map((bullet) => (
-                    <li key={bullet}>- {bullet}</li>
-                  ))}
-                </ul>
-                <p className="mt-3 text-sm text-[var(--muted)]">
-                  {l(contribution.outcome)}
-                </p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {contribution.tags.map((tag) => (
-                    <Chip key={tag}>{tag}</Chip>
+      <section className="section" data-glyph="EXP">
+        <div className="container">
+          <div
+            className="card reveal"
+            onMouseMove={onCardMove}
+            style={{ marginBottom: 24 }}
+          >
+            <div className="exp-period">
+              {l(content.experience.company)} · {l(content.experience.orgUnit)}
+            </div>
+            <h3 className="exp-title" style={{ marginBottom: 8 }}>
+              {l(content.experience.product)}
+            </h3>
+            <p className="exp-desc">{l(content.experience.productOneLiner)}</p>
+            <h4
+              style={{
+                marginTop: 20,
+                marginBottom: 10,
+                fontSize: 13,
+                fontFamily: "var(--font-mono)",
+                color: "var(--accent)",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+              }}
+            >
+              {l(content.experience.productCapabilitiesTitle)}
+            </h4>
+            <ul className="exp-bullets">
+              {list(content.experience.productCapabilities).map((b) => (
+                <li key={b}>{b}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div
+            className="rich-block reveal"
+            style={{ marginBottom: 40, "--delay": "0.05s" } as React.CSSProperties}
+          >
+            <h3>
+              <span className="icon">ENV</span>
+              {l(content.experience.environmentTitle)}
+            </h3>
+            <ul>
+              {list(content.experience.environmentBullets).map((b) => (
+                <li key={b}>{b}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="skills-grid" style={{ marginBottom: 40 }}>
+            {content.experience.roles.map((role, i) => (
+              <div
+                key={role.id}
+                className="card reveal"
+                onMouseMove={onCardMove}
+                style={{ "--delay": `${i * 0.08}s` } as React.CSSProperties}
+              >
+                <div className="exp-period">{l(role.period)}</div>
+                <h3 className="exp-title">{l(role.title)}</h3>
+                <p className="exp-desc">{l(role.summary)}</p>
+                <h4
+                  style={{
+                    marginTop: 18,
+                    marginBottom: 8,
+                    fontSize: 13,
+                    fontFamily: "var(--font-mono)",
+                    color: "var(--accent)",
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {l(role.focusTitle)}
+                </h4>
+                <div className="exp-chips" style={{ marginTop: 0, marginBottom: 14 }}>
+                  {list(role.focusAreas).map((f) => (
+                    <span key={f} className="chip">
+                      {f}
+                    </span>
                   ))}
                 </div>
-              </Card>
+                <ul className="exp-bullets">
+                  {list(role.bullets).map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+                <div className="exp-chips">
+                  {role.stack.map((tag) => (
+                    <span key={tag} className="chip">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
-        </Card>
 
-        <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <ButtonLink href="/skills" variant="primary" fullWidth>
-            {l(content.labels.seeSkills)}
-          </ButtonLink>
-          <ButtonLink href="/" variant="secondary" fullWidth>
-            {l(content.labels.back)}
-          </ButtonLink>
+          <div style={{ marginBottom: 24 }}>
+            <h2
+              className="reveal"
+              style={{
+                fontSize: "clamp(24px, 3vw, 32px)",
+                fontWeight: 600,
+                letterSpacing: "-0.02em",
+                color: "#fff",
+                marginBottom: 8,
+              }}
+            >
+              {l(content.experience.contributionsTitle)}
+            </h2>
+            <p
+              className="reveal"
+              style={{
+                color: "var(--muted)",
+                maxWidth: 720,
+                marginBottom: 24,
+                fontSize: 15,
+              }}
+            >
+              {l(content.experience.contributionsIntro)}
+            </p>
+          </div>
+
+          <div className="skills-grid" style={{ marginBottom: 40 }}>
+            {content.experience.contributions.map((c, i) => (
+              <div
+                key={c.title.en}
+                className="card reveal"
+                onMouseMove={onCardMove}
+                style={{ "--delay": `${i * 0.08}s` } as React.CSSProperties}
+              >
+                <h3 className="exp-title" style={{ fontSize: 18 }}>
+                  {l(c.title)}
+                </h3>
+                <p className="exp-desc">{l(c.context)}</p>
+                <div
+                  style={{
+                    marginTop: 10,
+                    marginBottom: 14,
+                    fontFamily: "var(--font-mono)",
+                    fontSize: 11,
+                    letterSpacing: "0.14em",
+                    textTransform: "uppercase",
+                    color: "var(--accent)",
+                  }}
+                >
+                  {l(c.myRole)}
+                </div>
+                <ul className="exp-bullets">
+                  {list(c.approachBullets).map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+                <p
+                  style={{
+                    marginTop: 12,
+                    color: "var(--muted)",
+                    fontSize: 13,
+                    fontStyle: "italic",
+                  }}
+                >
+                  → {l(c.outcome)}
+                </p>
+                <div className="exp-chips">
+                  {c.tags.map((tag) => (
+                    <span key={tag} className="chip">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div
+            className="rich-block reveal"
+            style={{ marginBottom: 40 }}
+          >
+            <h3>
+              <span className="icon">ART</span>
+              {l(content.experience.artifactsTitle)}
+            </h3>
+            <p>{l(content.experience.artifactsDisclaimer)}</p>
+            <ul>
+              {list(content.experience.artifacts).map((a) => (
+                <li key={a}>{a}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+            <Link href="/skills" className="btn btn-primary">
+              {l(content.labels.seeSkills)} <span>→</span>
+            </Link>
+            <Link href="/" className="btn btn-ghost">
+              {l(content.labels.back)}
+            </Link>
+          </div>
         </div>
-      </div>
+      </section>
     </main>
   );
 }

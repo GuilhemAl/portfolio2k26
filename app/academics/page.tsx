@@ -1,92 +1,147 @@
 "use client";
 
-import { Badge } from "@/components/ui/Badge";
-import { ButtonLink } from "@/components/ui/ButtonLink";
-import { Card } from "@/components/ui/Card";
+import Link from "next/link";
 import { content, type LocalizedList, type LocalizedString } from "@/lib/content";
 import { useI18n } from "@/lib/i18n";
 
+const onCardMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const r = e.currentTarget.getBoundingClientRect();
+  e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+  e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+};
+
 export default function AcademicsPage() {
   const { lang, t } = useI18n();
-  const l = (value: LocalizedString) => t(value.fr, value.en);
-  const list = (value: LocalizedList) => (lang === "fr" ? value.fr : value.en);
+  const l = (v: LocalizedString) => t(v.fr, v.en);
+  const list = (v: LocalizedList) => (lang === "fr" ? v.fr : v.en);
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
-      <div className="container-page section-pad">
-        <ButtonLink href="/#academics" variant="secondary">
-          {l(content.labels.back)}
-        </ButtonLink>
+    <main>
+      <section className="page-hero">
+        <div className="container">
+          <Link href="/" className="back-link">
+            <span>←</span> {l(content.labels.back)}
+          </Link>
+          <div className="eyebrow">03 / {t("TIMELINE", "TIMELINE")}</div>
+          <h1>{l(content.academics.pageTitle)}</h1>
+          <p className="lede">{l(content.academics.pageIntro)}</p>
+        </div>
+      </section>
 
-        <header className="mt-6">
-          <h1 className="text-3xl font-semibold tracking-[-0.02em] text-[var(--text)] sm:text-4xl">
-            {l(content.academics.pageTitle)}
-          </h1>
-          <p className="mt-3 max-w-2xl text-[var(--muted)]">
-            {l(content.academics.pageIntro)}
-          </p>
-        </header>
+      <section className="section" data-glyph="EDU">
+        <div className="container">
+          <div style={{ display: "grid", gap: 18, marginBottom: 40 }}>
+            {content.academics.items.map((item, i) => (
+              <div
+                key={item.key}
+                className="card reveal"
+                onMouseMove={onCardMove}
+                style={{ "--delay": `${i * 0.08}s` } as React.CSSProperties}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: 12,
+                    flexWrap: "wrap",
+                    marginBottom: 8,
+                  }}
+                >
+                  <div className="exp-period">{l(item.yearTitle)}</div>
+                  <span className="academic-badge">{l(item.status)}</span>
+                </div>
+                <h3 className="exp-title">{l(item.title)}</h3>
+                <p className="exp-desc">{l(item.context)}</p>
 
-        <section className="mt-8 grid gap-6">
-          {content.academics.items.map((item) => (
-            <Card key={item.key}>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
-                {l(item.yearTitle)}
-              </p>
-              <div className="mt-2 flex flex-wrap items-center justify-between gap-3">
-                <h2 className="text-lg font-semibold text-[var(--text)]">
-                  {l(item.title)}
-                </h2>
-                <Badge>{l(item.status)}</Badge>
+                <div
+                  style={{
+                    marginTop: 20,
+                    display: "grid",
+                    gap: 18,
+                    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+                  }}
+                >
+                  <div>
+                    <h4
+                      style={{
+                        fontSize: 12,
+                        fontFamily: "var(--font-mono)",
+                        color: "var(--accent)",
+                        letterSpacing: "0.14em",
+                        textTransform: "uppercase",
+                        marginBottom: 10,
+                      }}
+                    >
+                      {l(item.learnedTitle)}
+                    </h4>
+                    <ul className="exp-bullets" style={{ marginTop: 0 }}>
+                      {list(item.learnedBullets).map((b) => (
+                        <li key={b}>{b}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4
+                      style={{
+                        fontSize: 12,
+                        fontFamily: "var(--font-mono)",
+                        color: "var(--accent-2)",
+                        letterSpacing: "0.14em",
+                        textTransform: "uppercase",
+                        marginBottom: 10,
+                      }}
+                    >
+                      {l(item.themesTitle)}
+                    </h4>
+                    <ul className="exp-bullets" style={{ marginTop: 0 }}>
+                      {list(item.themesBullets).map((b) => (
+                        <li key={b}>{b}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {item.apprenticeshipNote ? (
+                  <div
+                    style={{
+                      marginTop: 18,
+                      padding: "12px 14px",
+                      border: "1px solid var(--border)",
+                      borderRadius: 12,
+                      background: "rgba(var(--accent-rgb), 0.05)",
+                      fontSize: 13,
+                      color: "var(--muted)",
+                      fontFamily: "var(--font-mono)",
+                    }}
+                  >
+                    {l(item.apprenticeshipNote)}
+                  </div>
+                ) : null}
               </div>
-              <p className="mt-3 text-sm text-[var(--muted)]">
-                {l(item.context)}
-              </p>
-
-              <h3 className="mt-4 text-sm font-semibold text-[var(--text)]">
-                {l(item.learnedTitle)}
-              </h3>
-              <ul className="mt-2 space-y-2 text-sm text-[var(--muted)]">
-                {list(item.learnedBullets).map((bullet) => (
-                  <li key={bullet}>- {bullet}</li>
-                ))}
-              </ul>
-
-              <h3 className="mt-4 text-sm font-semibold text-[var(--text)]">
-                {l(item.themesTitle)}
-              </h3>
-              <ul className="mt-2 space-y-2 text-sm text-[var(--muted)]">
-                {list(item.themesBullets).map((bullet) => (
-                  <li key={bullet}>- {bullet}</li>
-                ))}
-              </ul>
-
-              {item.apprenticeshipNote ? (
-                <p className="mt-4 rounded-xl border border-[var(--border)] bg-white/60 px-4 py-3 text-sm text-[var(--muted)]">
-                  {l(item.apprenticeshipNote)}
-                </p>
-              ) : null}
-            </Card>
-          ))}
-        </section>
-
-        <Card className="mt-8">
-          <h2 className="text-lg font-semibold text-[var(--text)]">
-            {l(content.academics.futureTitle)}
-          </h2>
-          <div className="mt-3 space-y-3 text-sm text-[var(--muted)]">
-            {list(content.academics.futureParagraphs).map((paragraph, index) => (
-              <p key={`future-${index}`}>{paragraph}</p>
             ))}
           </div>
-        </Card>
 
-        <div className="mt-10">
-          <ButtonLink href="/" variant="secondary">
-            {l(content.labels.back)}
-          </ButtonLink>
+          <div className="rich-block reveal" style={{ marginBottom: 40 }}>
+            <h3>
+              <span className="icon">NEXT</span>
+              {l(content.academics.futureTitle)}
+            </h3>
+            {list(content.academics.futureParagraphs).map((p, i) => (
+              <p key={`fut-${i}`}>{p}</p>
+            ))}
+          </div>
+
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+            <Link href="/about" className="btn btn-primary">
+              {l(content.pageTitles.about)} <span>→</span>
+            </Link>
+            <Link href="/" className="btn btn-ghost">
+              {l(content.labels.back)}
+            </Link>
+          </div>
         </div>
-      </div>
+      </section>
     </main>
   );
 }

@@ -1,13 +1,28 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
-import { ButtonLink } from "@/components/ui/ButtonLink";
-import { Card } from "@/components/ui/Card";
+import { FloatingParticles } from "@/components/fx/FloatingParticles";
+import { SectionHead } from "@/components/sections/SectionHead";
 import { content, type LocalizedString } from "@/lib/content";
 import { useI18n } from "@/lib/i18n";
 
-const copyButtonClass =
-  "inline-flex items-center rounded-full border border-[var(--border)] bg-[var(--text)] px-4 py-2 text-xs font-semibold text-white transition hover:bg-[#111a2a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]";
+type ContactRow = {
+  key: "email" | "phone" | "linkedin" | "github";
+  label: string;
+  value: string;
+  linkLabel: string;
+  linkHref: string;
+  copyField?: "email" | "phone";
+  helper?: string;
+  external?: boolean;
+};
+
+const onCardMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const r = e.currentTarget.getBoundingClientRect();
+  e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+  e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+};
 
 export default function ContactPage() {
   const { t } = useI18n();
@@ -32,12 +47,12 @@ export default function ContactPage() {
     }
   };
 
-  const rows = [
+  const rows: ContactRow[] = [
     {
       key: "email",
       label: l(content.contact.labels.emailLabel),
       value: email,
-      copyField: "email" as const,
+      copyField: "email",
       helper: l(content.contact.emailHint),
       linkLabel: l(content.contact.labels.mailtoLabel),
       linkHref: `mailto:${email}`,
@@ -46,8 +61,7 @@ export default function ContactPage() {
       key: "phone",
       label: l(content.contact.labels.phoneLabel),
       value: phone,
-      copyField: "phone" as const,
-      helper: null,
+      copyField: "phone",
       linkLabel: l(content.contact.labels.phoneLinkLabel),
       linkHref: `tel:${phoneHref}`,
     },
@@ -55,8 +69,6 @@ export default function ContactPage() {
       key: "linkedin",
       label: l(content.contact.labels.linkedinLabel),
       value: linkedin,
-      copyField: null,
-      helper: null,
       linkLabel: l(content.contact.labels.primaryCta),
       linkHref: linkedin,
       external: true,
@@ -65,8 +77,6 @@ export default function ContactPage() {
       key: "github",
       label: l(content.contact.labels.githubLabel),
       value: github,
-      copyField: null,
-      helper: null,
       linkLabel: l(content.contact.labels.ctaGitHub),
       linkHref: github,
       external: true,
@@ -74,55 +84,48 @@ export default function ContactPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
-      <div className="container-page section-pad">
-        <ButtonLink href="/" variant="secondary">
-          {l(content.contact.labels.back)}
-        </ButtonLink>
-
-        <header className="mt-6">
-          <h1 className="text-3xl font-semibold tracking-[-0.02em] text-[var(--text)] sm:text-4xl">
-            {l(content.contact.title)}
-          </h1>
-          <p className="mt-4 max-w-2xl text-[var(--muted)]">
-            {l(content.contact.subtitle)}
-          </p>
-          <p className="mt-2 max-w-2xl text-sm text-[var(--muted)]">
+    <main>
+      <section className="page-hero">
+        <div className="container">
+          <Link href="/" className="back-link">
+            <span>←</span> {l(content.contact.labels.back)}
+          </Link>
+          <div className="eyebrow">05 / {l(content.contact.labels.detailsTitle)}</div>
+          <h1>{l(content.contact.title)}</h1>
+          <p className="lede">{l(content.contact.subtitle)}</p>
+          <p className="lede contact-page-note">
             {l(content.contact.availabilityNote)}
           </p>
-        </header>
-
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <ButtonLink href={linkedin} variant="primary" external fullWidth>
-            {l(content.contact.labels.primaryCta)}
-          </ButtonLink>
         </div>
+      </section>
 
-        <Card className="mt-6">
-          <h2 className="text-lg font-semibold text-[var(--text)]">
-            {l(content.contact.labels.detailsTitle)}
-          </h2>
-          <div className="mt-4 divide-y divide-[var(--border)]">
-            {rows.map((row) => (
-              <div key={row.key} className="py-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
-                  {row.label}
-                </p>
-                <p className="mt-1 text-sm text-[var(--text)] break-all select-text">
-                  {row.value}
-                </p>
-                {row.helper ? (
-                  <p className="mt-1 text-xs text-[var(--muted)]">
-                    {row.helper}
-                  </p>
-                ) : null}
-                <div className="mt-3 flex flex-wrap items-center gap-3 text-sm">
+      <section
+        className="section"
+        data-glyph="CTC"
+        style={{ position: "relative", overflow: "hidden" }}
+      >
+        <div className="contact-particles">
+          <FloatingParticles density={8} />
+        </div>
+        <div className="container">
+          <SectionHead num="05" title={l(content.contact.labels.detailsTitle)} />
+          <div className="contact-detail-grid">
+            {rows.map((row, i) => (
+              <div
+                key={row.key}
+                className="card contact-detail-card reveal"
+                onMouseMove={onCardMove}
+                style={{ "--delay": `${i * 0.08}s` } as React.CSSProperties}
+              >
+                <div className="label">{row.label}</div>
+                <div className="value">{row.value}</div>
+                {row.helper ? <p className="helper">{row.helper}</p> : null}
+                <div className="contact-actions">
                   {row.copyField ? (
                     <button
                       type="button"
-                      onClick={() => handleCopy(row.copyField, row.value)}
-                      aria-label={`${l(content.contact.labels.ctaCopy)} ${row.label}`}
-                      className={copyButtonClass}
+                      onClick={() => handleCopy(row.copyField!, row.value)}
+                      className="btn btn-primary"
                     >
                       {copiedField === row.copyField
                         ? l(content.contact.labels.copied)
@@ -133,7 +136,7 @@ export default function ContactPage() {
                     href={row.linkHref}
                     target={row.external ? "_blank" : undefined}
                     rel={row.external ? "noreferrer" : undefined}
-                    className="text-xs font-semibold text-[var(--muted)] transition hover:text-[var(--text)]"
+                    className="btn btn-ghost"
                   >
                     {row.linkLabel}
                   </a>
@@ -141,8 +144,8 @@ export default function ContactPage() {
               </div>
             ))}
           </div>
-        </Card>
-      </div>
+        </div>
+      </section>
     </main>
   );
 }

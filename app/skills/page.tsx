@@ -1,52 +1,75 @@
 "use client";
 
-import { ButtonLink } from "@/components/ui/ButtonLink";
-import { Card } from "@/components/ui/Card";
-import { Chip } from "@/components/ui/Chip";
+import Link from "next/link";
 import { content, type LocalizedList, type LocalizedString } from "@/lib/content";
 import { useI18n } from "@/lib/i18n";
 
+const onCardMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const r = e.currentTarget.getBoundingClientRect();
+  e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+  e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+};
+
 export default function SkillsPage() {
   const { lang, t } = useI18n();
-  const l = (value: LocalizedString) => t(value.fr, value.en);
-  const list = (value: LocalizedList) => (lang === "fr" ? value.fr : value.en);
+  const l = (v: LocalizedString) => t(v.fr, v.en);
+  const list = (v: LocalizedList) => (lang === "fr" ? v.fr : v.en);
 
   return (
-    <main className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
-      <div className="container-page section-pad">
-        <ButtonLink href="/#skills" variant="secondary">
-          {l(content.labels.back)}
-        </ButtonLink>
-
-        <header className="mt-6">
-          <h1 className="text-3xl font-semibold tracking-[-0.02em] text-[var(--text)] sm:text-4xl">
-            {l(content.skills.title)}
-          </h1>
-          <p className="mt-3 max-w-2xl text-[var(--muted)]">
-            {l(content.skills.intro)}
-          </p>
-        </header>
-
-        <div className="mt-8 grid gap-6 md:grid-cols-2">
-          {content.skills.buckets.map((bucket) => (
-            <Card key={bucket.key}>
-              <h2 className="text-lg font-semibold text-[var(--text)]">
-                {l(bucket.title)}
-              </h2>
-              <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
-                {list(bucket.bullets).map((bullet) => (
-                  <li key={bullet}>- {bullet}</li>
-                ))}
-              </ul>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {bucket.tags.map((tag) => (
-                  <Chip key={tag}>{tag}</Chip>
-                ))}
-              </div>
-            </Card>
-          ))}
+    <main>
+      <section className="page-hero">
+        <div className="container">
+          <Link href="/" className="back-link">
+            <span>←</span> {l(content.labels.back)}
+          </Link>
+          <div className="eyebrow">02 / {t("STACK", "STACK")}</div>
+          <h1>{l(content.skills.title)}</h1>
+          <p className="lede">{l(content.skills.intro)}</p>
         </div>
-      </div>
+      </section>
+
+      <section className="section" data-glyph="SKL">
+        <div className="container">
+          <div className="skills-grid">
+            {content.skills.buckets.map((bucket, i) => (
+              <div
+                key={bucket.key}
+                className="card skill-bucket reveal"
+                onMouseMove={onCardMove}
+                style={{ "--delay": `${i * 0.08}s` } as React.CSSProperties}
+              >
+                <h3>
+                  <span className="icon">{String(i + 1).padStart(2, "0")}</span>
+                  {l(bucket.title)}
+                </h3>
+                <div className="sub">{bucket.tags.slice(0, 3).join(" · ")}</div>
+                <p className="summary">{l(bucket.summary)}</p>
+                <ul className="exp-bullets" style={{ marginTop: 12 }}>
+                  {list(bucket.bullets).map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+                <div className="skill-chips">
+                  {bucket.tags.map((tag) => (
+                    <span key={tag} className="chip">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ marginTop: 40, display: "flex", gap: 12, flexWrap: "wrap" }}>
+            <Link href="/experience" className="btn btn-primary">
+              {l(content.ctas.primary)} <span>→</span>
+            </Link>
+            <Link href="/" className="btn btn-ghost">
+              {l(content.labels.back)}
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

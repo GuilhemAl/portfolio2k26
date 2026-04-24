@@ -1,312 +1,291 @@
 "use client";
 
-import Image from "next/image";
-import { useState } from "react";
-import { BrandTitle } from "@/components/BrandTitle";
-import { Badge } from "@/components/ui/Badge";
-import { ButtonLink } from "@/components/ui/ButtonLink";
-import { Card } from "@/components/ui/Card";
-import { Chip } from "@/components/ui/Chip";
-import { Section } from "@/components/ui/Section";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { ContactBlock } from "@/components/sections/ContactBlock";
+import { Hero } from "@/components/sections/Hero";
+import { SectionHead } from "@/components/sections/SectionHead";
 import { content, type LocalizedList, type LocalizedString } from "@/lib/content";
 import { useI18n } from "@/lib/i18n";
 
-const copyButtonClass =
-  "inline-flex items-center rounded-full border border-[var(--border)] bg-[var(--text)] px-4 py-2 text-xs font-semibold text-white transition hover:bg-[#111a2a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]";
+const onCardMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const r = e.currentTarget.getBoundingClientRect();
+  e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+  e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+};
 
 export default function Home() {
-  const { lang, t } = useI18n();
-  const l = (value: LocalizedString) => t(value.fr, value.en);
-  const list = (value: LocalizedList) => (lang === "fr" ? value.fr : value.en);
-  const deepDiveLabel = l(content.labels.deepDive);
-  const futureTeaser = list(content.about.aboutFutureParagraphs)[0];
-  const [copiedField, setCopiedField] = useState<"email" | "phone" | null>(
-    null,
-  );
-
-  const contactEmail = content.contact.fields.email;
-  const contactPhone = content.contact.fields.phone;
-  const contactLinkedIn = content.contact.fields.linkedin;
-
-  const handleCopy = async (field: "email" | "phone", value: string) => {
-    if (!navigator?.clipboard) {
-      return;
-    }
-    try {
-      await navigator.clipboard.writeText(value);
-      setCopiedField(field);
-      window.setTimeout(() => setCopiedField(null), 2000);
-    } catch {
-      setCopiedField(null);
-    }
-  };
+  const { t, lang } = useI18n();
+  const l = (v: LocalizedString) => t(v.fr, v.en);
+  const list = (v: LocalizedList) => (lang === "fr" ? v.fr : v.en);
+  const deepDive = l(content.labels.deepDive);
 
   return (
-    <main className="bg-[var(--bg)] text-[var(--text)]">
-      <section id="home" className="scroll-mt-28 hero-gradient">
-        <div className="container-page py-12 md:py-16 lg:py-20">
-          <div className="flex flex-col gap-8 md:flex-row md:items-start md:gap-10">
-            <div className="flex-1">
-              <div className="flex flex-col gap-5">
-                <BrandTitle name={l(content.identity.displayName)} />
-                <div className="space-y-3 text-[var(--muted)]">
-                  <p className="text-base font-semibold text-[var(--text)] sm:text-lg">
-                    {l(content.identity.roleHeadline)}
-                  </p>
-                  <p className="max-w-2xl text-sm sm:text-base">
-                    {l(content.identity.roleSubheadline)}
-                  </p>
-                  <p className="max-w-2xl text-sm sm:text-base">
-                    {l(content.identity.goal)}
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-2 text-sm">
-                  {list(content.quickFacts).map((fact) => (
-                    <Chip key={fact}>{fact}</Chip>
-                  ))}
-                </div>
-                <div className="flex flex-col gap-3 sm:flex-row">
-                  <ButtonLink href="/#contact" variant="primary" fullWidth>
-                    {l(content.ctas.secondary)}
-                  </ButtonLink>
-                </div>
-              </div>
-            </div>
-            <div className="hidden justify-center md:flex md:flex-1 md:justify-center">
-              <div className="relative h-40 w-40 overflow-hidden rounded-full border-2 border-[var(--accent)] bg-[var(--surface-strong)] shadow-[var(--shadow)] sm:h-44 sm:w-44 md:h-52 md:w-52 lg:h-60 lg:w-60">
-                <Image
-                  src="/photo.jpeg"
-                  alt="Portrait of Guilhem Albus"
-                  fill
-                  priority
-                  quality={100}
-                  sizes="(min-width: 1024px) 240px, (min-width: 768px) 208px, (min-width: 640px) 176px, 160px"
-                  className="object-cover object-[center_top]"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    <main>
+      <Hero />
 
-      <Section id="experience" className="scroll-mt-28">
-        <div className="flex flex-col gap-3">
-          <div className="flex flex-wrap items-center gap-3">
-            <h2 className="text-2xl font-semibold text-[var(--text)]">
-              {l(content.navigation.items.experience)}
-            </h2>
-            <Badge variant="accent">{l(content.experience.apprenticeshipLabel)}</Badge>
-          </div>
-          <p className="text-sm text-[var(--muted)]">
-            {l(content.experience.company)} / {l(content.experience.orgUnit)} /{" "}
-            {l(content.experience.period)}
-          </p>
-          <p className="text-sm text-[var(--muted)]">
-            {l(content.experience.apprenticeshipNote)}
-          </p>
-          <div className="space-y-2 text-[var(--muted)]">
-            <p className="text-sm font-semibold text-[var(--text)]">
-              {l(content.experience.productLabel)}
-            </p>
-            <p className="max-w-2xl text-sm">
-              {l(content.experience.productOneLiner)}
-            </p>
-          </div>
-        </div>
-        <div className="mt-6 grid gap-4 md:grid-cols-2">
-          {content.experience.roles.map((role) => (
-            <Card key={role.id}>
-              <div className="flex items-baseline justify-between gap-3">
-                <h3 className="text-lg font-semibold text-[var(--text)]">
-                  {l(role.title)}
-                </h3>
-                <span className="text-xs text-[var(--muted)]">
-                  {l(role.period)}
-                </span>
-              </div>
-              <p className="mt-3 text-sm text-[var(--muted)]">
-                {l(role.summary)}
-              </p>
-              <ul className="mt-3 space-y-2 text-sm text-[var(--muted)]">
-                {list(role.bullets).map((bullet) => (
-                  <li key={bullet}>- {bullet}</li>
-                ))}
-              </ul>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {role.stack.map((tag) => (
-                  <Chip key={tag}>{tag}</Chip>
-                ))}
-              </div>
-            </Card>
-          ))}
-        </div>
-        <div className="mt-8">
-          <h3 className="text-lg font-semibold text-[var(--text)]">
-            {l(content.experience.contributionsTitle)}
-          </h3>
-          <p className="mt-2 text-sm text-[var(--muted)]">
-            {l(content.experience.contributionsIntro)}
-          </p>
-          <div className="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {content.experience.contributions.map((contribution) => (
-              <Card key={contribution.title.en}>
-                <h4 className="text-base font-semibold text-[var(--text)]">
-                  {l(contribution.title)}
-                </h4>
-                <p className="mt-2 text-sm text-[var(--muted)]">
-                  {l(contribution.context)}
-                </p>
-                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.25em] text-[var(--muted)]">
-                  {l(contribution.myRole)}
-                </p>
-                <p className="mt-2 text-sm text-[var(--muted)]">
-                  {l(contribution.outcome)}
-                </p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {contribution.tags.map((tag) => (
-                    <Chip key={tag}>{tag}</Chip>
-                  ))}
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-        <div className="mt-6">
-          <ButtonLink href="/experience" variant="primary">
-            {deepDiveLabel}
-          </ButtonLink>
-        </div>
-      </Section>
+      <ExperienceTeaser onCardMove={onCardMove} t={t} l={l} list={list} deepDive={deepDive} />
 
-      <Section id="skills" className="scroll-mt-28" title={l(content.skills.title)}>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {content.skills.buckets.map((bucket) => (
-            <Card key={bucket.key}>
-              <h3 className="text-lg font-semibold text-[var(--text)]">
-                {l(bucket.title)}
-              </h3>
-              <p className="mt-3 text-sm text-[var(--muted)]">
-                {l(bucket.summary)}
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {bucket.tags.map((tag) => (
-                  <Chip key={tag}>{tag}</Chip>
-                ))}
-              </div>
-            </Card>
-          ))}
-        </div>
-        <div className="mt-6">
-          <ButtonLink href="/skills" variant="primary">
-            {deepDiveLabel}
-          </ButtonLink>
-        </div>
-      </Section>
+      <SkillsTeaser onCardMove={onCardMove} l={l} deepDive={deepDive} />
 
-      <Section
-        id="academics"
-        className="scroll-mt-28"
-        title={l(content.academics.homeTitle)}
-        subtitle={l(content.academics.homeIntro)}
-      >
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {content.academics.items.map((item) => (
-            <Card key={item.key}>
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
-                  {l(item.yearTitle)}
-                </p>
-                <Badge>{l(item.status)}</Badge>
-              </div>
-              <h3 className="mt-3 text-base font-semibold text-[var(--text)]">
-                {l(item.title)}
-              </h3>
-              <p className="mt-2 text-sm text-[var(--muted)]">
-                {l(item.context)}
-              </p>
-            </Card>
-          ))}
-        </div>
-        <div className="mt-6">
-          <ButtonLink href="/academics" variant="primary">
-            {l(content.academics.homeCta)}
-          </ButtonLink>
-        </div>
-      </Section>
+      <AcademicsTeaser t={t} l={l} deepDive={deepDive} />
 
-      <Section
-        id="about"
-        className="scroll-mt-28"
-        title={l(content.navigation.items.about)}
-      >
-        <div className="space-y-4 text-[var(--muted)]">
-          <p>{l(content.about.aboutIntro)}</p>
-          {futureTeaser ? <p>{futureTeaser}</p> : null}
-        </div>
-        <div className="mt-6">
-          <ButtonLink href="/about" variant="primary">
-            {deepDiveLabel}
-          </ButtonLink>
-        </div>
-      </Section>
+      <AboutTeaser l={l} deepDive={deepDive} />
 
-      <Section
-        id="contact"
-        className="scroll-mt-28"
-        title={l(content.contact.title)}
-      >
-        <p className="max-w-2xl text-[var(--muted)]">
-          {l(content.contact.subtitle)}
-        </p>
-        <p className="mt-2 max-w-2xl text-[var(--muted)]">
-          {l(content.contact.availabilityNote)}
-        </p>
-        <div className="mt-6 grid gap-4 md:grid-cols-2">
-          {[
-            {
-              key: "email",
-              label: l(content.contact.labels.emailLabel),
-              value: contactEmail,
-            },
-            {
-              key: "phone",
-              label: l(content.contact.labels.phoneLabel),
-              value: contactPhone,
-            },
-          ].map((item) => (
-            <Card key={item.key}>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
-                {item.label}
-              </p>
-              <p className="mt-2 text-sm text-[var(--text)] select-text break-all">
-                {item.value}
-              </p>
-              <button
-                type="button"
-                onClick={() =>
-                  handleCopy(item.key === "email" ? "email" : "phone", item.value)
-                }
-                aria-label={`${l(content.contact.labels.ctaCopy)} ${item.label}`}
-                className={`${copyButtonClass} mt-3`}
-              >
-                {copiedField === item.key
-                  ? l(content.contact.labels.copied)
-                  : l(content.contact.labels.ctaCopy)}
-              </button>
-            </Card>
-          ))}
-        </div>
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <ButtonLink
-            href={contactLinkedIn}
-            variant="primary"
-            external
-            fullWidth
-          >
-            {l(content.contact.labels.primaryCta)}
-          </ButtonLink>
-        </div>
-      </Section>
+      <ContactBlock />
     </main>
+  );
+}
+
+function ExperienceTeaser({
+  onCardMove,
+  t,
+  l,
+  list,
+  deepDive,
+}: {
+  onCardMove: (e: React.MouseEvent<HTMLDivElement>) => void;
+  t: (fr: string, en: string) => string;
+  l: (v: LocalizedString) => string;
+  list: (v: LocalizedList) => string[];
+  deepDive: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [fill, setFill] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (!ref.current) return;
+      const r = ref.current.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const total = r.height + vh * 0.6;
+      const progress = Math.max(0, Math.min(1, (vh * 0.7 - r.top) / total));
+      setFill(progress * 100);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <section id="experience" className="section" data-glyph="EXP">
+      <div className="container">
+        <SectionHead num="01" title={l(content.navigation.items.experience)} />
+        <p
+          className="reveal"
+          style={{
+            color: "var(--muted)",
+            maxWidth: 720,
+            marginBottom: 8,
+            fontSize: 15,
+          }}
+        >
+          {l(content.experience.company)} · {l(content.experience.orgUnit)} ·{" "}
+          {l(content.experience.period)}
+        </p>
+        <p
+          className="reveal"
+          style={{
+            color: "var(--muted-2)",
+            maxWidth: 720,
+            marginBottom: 36,
+            fontSize: 14,
+            fontFamily: "var(--font-mono)",
+          }}
+        >
+          {l(content.experience.productOneLiner)}
+        </p>
+        <div
+          ref={ref}
+          className="timeline"
+          style={{ "--fill": `${fill}%` } as React.CSSProperties}
+        >
+          {content.experience.roles.map((role, i) => (
+            <div
+              key={role.id}
+              className="timeline-item reveal"
+              style={{ "--delay": `${i * 0.08}s` } as React.CSSProperties}
+            >
+              <div className="timeline-node" />
+              <div className="card" onMouseMove={onCardMove}>
+                <div className="exp-period">{l(role.period)}</div>
+                <h3 className="exp-title">{l(role.title)}</h3>
+                <div className="exp-company">
+                  {l(content.experience.company)} —{" "}
+                  {l(content.experience.product)}
+                </div>
+                <p className="exp-desc">{l(role.summary)}</p>
+                <ul className="exp-bullets">
+                  {list(role.bullets).map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+                <div className="exp-chips">
+                  {role.stack.map((tag) => (
+                    <span key={tag} className="chip">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="section-cta" style={{ marginTop: 32 }}>
+          <Link href="/experience" className="btn btn-primary">
+            {deepDive} <span>→</span>
+          </Link>
+        </div>
+        <span className="sr-only">{t("Expérience", "Experience")}</span>
+      </div>
+    </section>
+  );
+}
+
+function SkillsTeaser({
+  onCardMove,
+  l,
+  deepDive,
+}: {
+  onCardMove: (e: React.MouseEvent<HTMLDivElement>) => void;
+  l: (v: LocalizedString) => string;
+  deepDive: string;
+}) {
+  return (
+    <section id="skills" className="section" data-glyph="SKL">
+      <div className="container">
+        <SectionHead num="02" title={l(content.skills.title)} />
+        <p
+          className="reveal"
+          style={{
+            color: "var(--muted)",
+            maxWidth: 720,
+            marginBottom: 36,
+            fontSize: 15,
+          }}
+        >
+          {l(content.skills.intro)}
+        </p>
+        <div className="skills-grid">
+          {content.skills.buckets.map((b, i) => (
+            <div
+              key={b.key}
+              className="card skill-bucket reveal"
+              style={{ "--delay": `${i * 0.08}s` } as React.CSSProperties}
+              onMouseMove={onCardMove}
+            >
+              <h3>
+                <span className="icon">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {l(b.title)}
+              </h3>
+              <div className="sub">{b.tags.slice(0, 3).join(" · ")}</div>
+              <p className="summary">{l(b.summary)}</p>
+              <div className="skill-chips">
+                {b.tags.map((tag) => (
+                  <span key={tag} className="chip">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="section-cta" style={{ marginTop: 32 }}>
+          <Link href="/skills" className="btn btn-primary">
+            {deepDive} <span>→</span>
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AcademicsTeaser({
+  t,
+  l,
+  deepDive,
+}: {
+  t: (fr: string, en: string) => string;
+  l: (v: LocalizedString) => string;
+  deepDive: string;
+}) {
+  return (
+    <section id="academics" className="section" data-glyph="EDU">
+      <div className="container">
+        <SectionHead num="03" title={l(content.academics.homeTitle)} />
+        <p
+          className="reveal"
+          style={{
+            color: "var(--muted)",
+            maxWidth: 720,
+            marginBottom: 36,
+            fontSize: 15,
+          }}
+        >
+          {l(content.academics.homeIntro)}
+        </p>
+        <div className="academic-list">
+          {[...content.academics.items].reverse().map((item, i) => (
+            <div
+              key={item.key}
+              className="academic-item reveal"
+              style={{ "--delay": `${i * 0.08}s` } as React.CSSProperties}
+            >
+              <div className="academic-year">{l(item.yearTitle)}</div>
+              <div className="academic-main">
+                <h4>{l(item.title)}</h4>
+                <p>{l(item.context)}</p>
+              </div>
+              <span className="academic-badge">{l(item.status)}</span>
+            </div>
+          ))}
+        </div>
+        <div className="section-cta" style={{ marginTop: 32 }}>
+          <Link href="/academics" className="btn btn-primary">
+            {t(l(content.academics.homeCta), l(content.academics.homeCta))}{" "}
+            <span>→</span>
+          </Link>
+        </div>
+        <span className="sr-only">{deepDive}</span>
+      </div>
+    </section>
+  );
+}
+
+function AboutTeaser({
+  l,
+  deepDive,
+}: {
+  l: (v: LocalizedString) => string;
+  deepDive: string;
+}) {
+  const lede = l(content.about.aboutIntro);
+  const future = l({
+    fr: content.about.aboutFutureParagraphs.fr[0] ?? "",
+    en: content.about.aboutFutureParagraphs.en[0] ?? "",
+  });
+
+  return (
+    <section id="about" className="section" data-glyph="ABT">
+      <div className="container">
+        <SectionHead num="04" title={l(content.about.aboutPageTitle)} />
+        <div className="about-text about-text-wide">
+          <p className="lede reveal">{lede}</p>
+          <p
+            className="reveal"
+            style={{ "--delay": "0.1s" } as React.CSSProperties}
+          >
+            {future}
+          </p>
+        </div>
+        <div className="section-cta" style={{ marginTop: 32 }}>
+          <Link href="/about" className="btn btn-primary">
+            {deepDive} <span>→</span>
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 }

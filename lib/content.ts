@@ -1054,7 +1054,7 @@ export const content = {
     fields: {
       email: "albusguilhem@gmail.com",
       phone: "0695636530",
-      linkedin: "https://www.linkedin.com/in/guilhem-albus-00601639a/",
+      linkedin: "https://www.linkedin.com/in/guilhem-albus/",
       github: "https://github.com/GuilhemAl",
     },
     labels: {

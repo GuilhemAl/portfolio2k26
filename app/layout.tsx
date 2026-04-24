@@ -4,6 +4,14 @@ import "./globals.css";
 import { site } from "@/lib/site";
 import { Navbar } from "@/components/Navbar";
 import { LanguageProvider } from "@/lib/i18n";
+import { CursorFollower } from "@/components/fx/CursorFollower";
+import { DepthLayers } from "@/components/fx/DepthLayers";
+import { ScrollProgress } from "@/components/fx/ScrollProgress";
+import { ScrollRail } from "@/components/fx/ScrollRail";
+import { RevealObserver } from "@/components/fx/RevealObserver";
+import { ScrollFXProvider } from "@/components/fx/ScrollFXProvider";
+import { Footer } from "@/components/Footer";
+import { CVFloat } from "@/components/CVFloat";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -31,20 +39,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body
-        className={`${spaceGrotesk.variable} ${jetBrainsMono.variable} pb-24 antialiased sm:pb-20`}
-      >
+      <body className={`${spaceGrotesk.variable} ${jetBrainsMono.variable}`}>
         <LanguageProvider>
+          <ScrollProgress />
+          <DepthLayers />
+          <CursorFollower />
           <Navbar />
-          {children}
-          <a
-            href="/CV%20Guilhem%20ALBUS%20-%20Chef%20de%20Projet%20IT.pdf"
-            download="Guilhem-Albus-CV.pdf"
-            aria-label="Telecharger le CV"
-            className="fixed bottom-4 right-4 z-40 rounded-full bg-[var(--text)] px-5 py-3 text-center text-sm font-semibold text-white shadow-[var(--shadow)] transition hover:bg-[#111a2a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)]"
-          >
-            CV
-          </a>
+          <ScrollRail />
+          <ScrollFXProvider intensity={10} />
+          <RevealObserver />
+          <div id="scroll-warp" className="scroll-warp">
+            {children}
+            <Footer />
+          </div>
+          <CVFloat />
         </LanguageProvider>
       </body>
     </html>

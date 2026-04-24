@@ -6,6 +6,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 
@@ -22,25 +23,38 @@ const I18nContext = createContext<I18nContextValue | undefined>(undefined);
 const storageKey = "lang";
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLang] = useState<Lang>(() => {
-    if (typeof window === "undefined") {
-      return "fr";
-    }
-
-    const stored = window.localStorage.getItem(storageKey);
-    return stored === "fr" || stored === "en" ? stored : "fr";
-  });
+  const [lang, setLangState] = useState<Lang>("fr");
+  const initialized = useRef(false);
 
   useEffect(() => {
+    const id = window.setTimeout(() => {
+      const stored = window.localStorage.getItem(storageKey);
+      initialized.current = true;
+      if (stored === "fr" || stored === "en") {
+        setLangState(stored);
+      }
+    }, 0);
+
+    return () => window.clearTimeout(id);
+  }, []);
+
+  useEffect(() => {
+    if (!initialized.current) return;
     window.localStorage.setItem(storageKey, lang);
+    document.documentElement.lang = lang;
   }, [lang]);
+
+  const setLang = useCallback((nextLang: Lang) => {
+    initialized.current = true;
+    setLangState(nextLang);
+  }, []);
 
   const t = useCallback(
     (fr: string, en: string) => (lang === "fr" ? fr : en),
     [lang],
   );
 
-  const value = useMemo(() => ({ lang, setLang, t }), [lang, t]);
+  const value = useMemo(() => ({ lang, setLang, t }), [lang, setLang, t]);
 
   return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
 }
