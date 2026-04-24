@@ -23,6 +23,8 @@ const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
+const ogImageUrl = new URL(site.ogImage, site.url).toString();
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: site.title,
@@ -35,7 +37,9 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/opengraph-image",
+        url: ogImageUrl,
+        secureUrl: ogImageUrl,
+        type: "image/png",
         width: 1200,
         height: 630,
         alt: "Hero du portfolio de Guilhem Albus",
@@ -46,7 +50,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: site.title,
     description: site.description,
-    images: ["/opengraph-image"],
+    images: [
+      {
+        url: ogImageUrl,
+        alt: "Hero du portfolio de Guilhem Albus",
+      },
+    ],
   },
   icons: {
     icon: "/icon.png",
