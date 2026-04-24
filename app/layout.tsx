@@ -12,6 +12,7 @@ import { RevealObserver } from "@/components/fx/RevealObserver";
 import { ScrollFXProvider } from "@/components/fx/ScrollFXProvider";
 import { Footer } from "@/components/Footer";
 import { CVFloat } from "@/components/CVFloat";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -85,6 +86,7 @@ export default function RootLayout({
           </div>
           <CVFloat />
         </LanguageProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
