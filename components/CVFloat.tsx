@@ -9,7 +9,7 @@ export function CVFloat() {
   const label = t("CV", "CV");
   return (
     <a
-      href="/CV%20Guilhem%20ALBUS%20-%20Chef%20de%20Projet%20IT.pdf"
+      href="/Guilhem%20Albus%20%E2%80%94%20CV.pdf"
       download="Guilhem-Albus-CV.pdf"
       aria-label={label}
       className="cv-float"
