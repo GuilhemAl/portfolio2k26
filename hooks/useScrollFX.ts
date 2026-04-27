@@ -1,15 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-
-const SECTION_IDS = [
-  "hero",
-  "experience",
-  "skills",
-  "academics",
-  "about",
-  "contact",
-];
+import { HOME_SECTION_IDS } from "@/lib/sections";
 
 export function useScrollFX(intensity = 10) {
   useEffect(() => {
@@ -22,11 +14,12 @@ export function useScrollFX(intensity = 10) {
 
     let raf = 0;
     const sections = () =>
-      SECTION_IDS.map((id) => document.getElementById(id)).filter(
+      HOME_SECTION_IDS.map((id) => document.getElementById(id)).filter(
         (x): x is HTMLElement => !!x,
       );
 
     const tick = () => {
+      raf = 0;
       const y = window.scrollY;
       const vh = window.innerHeight;
 
@@ -75,10 +68,20 @@ export function useScrollFX(intensity = 10) {
       const gf = document.querySelector<HTMLElement>(".grid-floor");
       if (gf) gf.style.setProperty("--grid-y", `${y * 0.5}px`);
 
-      raf = requestAnimationFrame(tick);
     };
 
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    const schedule = () => {
+      if (!raf) raf = requestAnimationFrame(tick);
+    };
+
+    schedule();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
   }, [intensity]);
 }

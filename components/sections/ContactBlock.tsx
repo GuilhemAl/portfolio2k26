@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { FloatingParticles } from "@/components/fx/FloatingParticles";
 import { SectionHead } from "@/components/sections/SectionHead";
-import { content, type LocalizedString } from "@/lib/content";
-import { useI18n } from "@/lib/i18n";
+import { content } from "@/lib/content";
+import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 
 type Item = {
   key: string;
@@ -15,8 +15,7 @@ type Item = {
 };
 
 export function ContactBlock({ num = "05" }: { num?: string }) {
-  const { t } = useI18n();
-  const l = (v: LocalizedString) => t(v.fr, v.en);
+  const { l } = useLocalizedContent();
   const [copied, setCopied] = useState<string | null>(null);
   const { email, phone, linkedin, github } = content.contact.fields;
   const phoneHref = phone.startsWith("0") ? `+33${phone.slice(1)}` : phone;

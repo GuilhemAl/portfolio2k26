@@ -4,19 +4,19 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { LanguageToggle } from "@/components/LanguageToggle";
-import { content, type LocalizedString } from "@/lib/content";
-import { useI18n } from "@/lib/i18n";
+import { content } from "@/lib/content";
+import { useLocalizedContent } from "@/hooks/useLocalizedContent";
+import { useScrollSpy } from "@/hooks/useScrollSpy";
 
 type NavItem = { id: string; label: string; href: string };
 
 export function Navbar() {
-  const { t, lang } = useI18n();
-  const l = (v: LocalizedString) => t(v.fr, v.en);
+  const { lang, l } = useLocalizedContent();
   const pathname = usePathname();
   const router = useRouter();
 
   const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState<string>("hero");
+  const active = useScrollSpy(pathname === "/");
   const linksRef = useRef<HTMLDivElement>(null);
   const [indicator, setIndicator] = useState({
     left: 0,
@@ -63,28 +63,6 @@ export function Navbar() {
     window.addEventListener("scroll", on, { passive: true });
     return () => window.removeEventListener("scroll", on);
   }, []);
-
-  // Scroll-spy on home page
-  useEffect(() => {
-    if (pathname !== "/") {
-      setActive("");
-      return;
-    }
-    const ids = items.map((i) => i.id);
-    const on = () => {
-      const y = window.scrollY + window.innerHeight * 0.35;
-      let cur = "hero";
-      for (const id of ids) {
-        const el = document.getElementById(id);
-        if (el && el.offsetTop <= y) cur = id;
-      }
-      setActive(cur);
-    };
-    on();
-    window.addEventListener("scroll", on, { passive: true });
-    return () => window.removeEventListener("scroll", on);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
 
   // Move the pill indicator
   useEffect(() => {

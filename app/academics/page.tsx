@@ -1,19 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { content, type LocalizedList, type LocalizedString } from "@/lib/content";
-import { useI18n } from "@/lib/i18n";
-
-const onCardMove = (e: React.MouseEvent<HTMLDivElement>) => {
-  const r = e.currentTarget.getBoundingClientRect();
-  e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
-  e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
-};
+import { content } from "@/lib/content";
+import { setCardPointer } from "@/hooks/useCardPointer";
+import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 
 export default function AcademicsPage() {
-  const { lang, t } = useI18n();
-  const l = (v: LocalizedString) => t(v.fr, v.en);
-  const list = (v: LocalizedList) => (lang === "fr" ? v.fr : v.en);
+  const { l, list, t } = useLocalizedContent();
 
   return (
     <main>
@@ -35,7 +28,7 @@ export default function AcademicsPage() {
               <div
                 key={item.key}
                 className="card reveal"
-                onMouseMove={onCardMove}
+                onMouseMove={setCardPointer}
                 style={{ "--delay": `${i * 0.08}s` } as React.CSSProperties}
               >
                 <div

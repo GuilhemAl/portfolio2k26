@@ -4,8 +4,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { FloatingParticles } from "@/components/fx/FloatingParticles";
 import { SectionHead } from "@/components/sections/SectionHead";
-import { content, type LocalizedString } from "@/lib/content";
-import { useI18n } from "@/lib/i18n";
+import { content } from "@/lib/content";
+import { setCardPointer } from "@/hooks/useCardPointer";
+import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 
 type ContactRow = {
   key: "email" | "phone" | "linkedin" | "github";
@@ -18,15 +19,8 @@ type ContactRow = {
   external?: boolean;
 };
 
-const onCardMove = (e: React.MouseEvent<HTMLDivElement>) => {
-  const r = e.currentTarget.getBoundingClientRect();
-  e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
-  e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
-};
-
 export default function ContactPage() {
-  const { t } = useI18n();
-  const l = (value: LocalizedString) => t(value.fr, value.en);
+  const { l } = useLocalizedContent();
   const [copiedField, setCopiedField] = useState<"email" | "phone" | null>(
     null,
   );
@@ -114,7 +108,7 @@ export default function ContactPage() {
               <div
                 key={row.key}
                 className="card contact-detail-card reveal"
-                onMouseMove={onCardMove}
+                onMouseMove={setCardPointer}
                 style={{ "--delay": `${i * 0.08}s` } as React.CSSProperties}
               >
                 <div className="label">{row.label}</div>

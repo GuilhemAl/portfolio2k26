@@ -1,19 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { content, type LocalizedList, type LocalizedString } from "@/lib/content";
-import { useI18n } from "@/lib/i18n";
-
-const onCardMove = (e: React.MouseEvent<HTMLDivElement>) => {
-  const r = e.currentTarget.getBoundingClientRect();
-  e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
-  e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
-};
+import { content } from "@/lib/content";
+import { setCardPointer } from "@/hooks/useCardPointer";
+import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 
 export default function ExperiencePage() {
-  const { lang, t } = useI18n();
-  const l = (v: LocalizedString) => t(v.fr, v.en);
-  const list = (v: LocalizedList) => (lang === "fr" ? v.fr : v.en);
+  const { l, list } = useLocalizedContent();
 
   return (
     <main>
@@ -34,7 +27,7 @@ export default function ExperiencePage() {
         <div className="container">
           <div
             className="card reveal"
-            onMouseMove={onCardMove}
+            onMouseMove={setCardPointer}
             style={{ marginBottom: 24 }}
           >
             <div className="exp-period">
@@ -84,7 +77,7 @@ export default function ExperiencePage() {
               <div
                 key={role.id}
                 className="card reveal"
-                onMouseMove={onCardMove}
+                onMouseMove={setCardPointer}
                 style={{ "--delay": `${i * 0.08}s` } as React.CSSProperties}
               >
                 <div className="exp-period">{l(role.period)}</div>
@@ -157,7 +150,7 @@ export default function ExperiencePage() {
               <div
                 key={c.title.en}
                 className="card reveal"
-                onMouseMove={onCardMove}
+                onMouseMove={setCardPointer}
                 style={{ "--delay": `${i * 0.08}s` } as React.CSSProperties}
               >
                 <h3 className="exp-title" style={{ fontSize: 18 }}>

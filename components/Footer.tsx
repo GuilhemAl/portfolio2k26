@@ -1,11 +1,10 @@
 "use client";
 
-import { content, type LocalizedString } from "@/lib/content";
-import { useI18n } from "@/lib/i18n";
+import { content } from "@/lib/content";
+import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 
 export function Footer() {
-  const { t } = useI18n();
-  const l = (v: LocalizedString) => t(v.fr, v.en);
+  const { l } = useLocalizedContent();
 
   return (
     <footer className="footer">

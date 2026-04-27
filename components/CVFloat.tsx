@@ -1,12 +1,11 @@
 "use client";
 
-import { content, type LocalizedString } from "@/lib/content";
-import { useI18n } from "@/lib/i18n";
+import { content } from "@/lib/content";
+import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 
 export function CVFloat() {
-  const { t } = useI18n();
-  const l = (v: LocalizedString) => t(v.fr, v.en);
-  const label = t("CV", "CV");
+  const { l } = useLocalizedContent();
+  const label = "CV";
   return (
     <a
       href="/Guilhem%20Albus%20%E2%80%94%20CV.pdf"

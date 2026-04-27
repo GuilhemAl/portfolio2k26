@@ -4,13 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { HeroBackground } from "@/components/fx/HeroBackground";
-import { content, type LocalizedList, type LocalizedString } from "@/lib/content";
-import { useI18n } from "@/lib/i18n";
+import { content } from "@/lib/content";
+import { useLocalizedContent } from "@/hooks/useLocalizedContent";
 
 export function Hero() {
-  const { t, lang } = useI18n();
-  const l = (v: LocalizedString) => t(v.fr, v.en);
-  const list = (v: LocalizedList) => (lang === "fr" ? v.fr : v.en);
+  const { lang, l, list } = useLocalizedContent();
 
   const displayName = l(content.identity.displayName);
   const [firstName, ...restName] = displayName.trim().split(/\s+/);
@@ -107,7 +105,7 @@ export function Hero() {
   return (
     <section id="hero" className="hero">
       <div className="hero-bg">
-        <HeroBackground style="matrix" intensity={10} />
+        <HeroBackground intensity={10} />
       </div>
       <div className="hero-grid">
         <div>
